@@ -396,10 +396,34 @@
 \chapter{Material und Methoden}%: Document Setup and Document Structure}
 \label{chapter-use}
 
-\section{Hydropathy}
+\section{Der Datensatz}
+Dengue-Virus: Abbildung \ref{fig:Dengue_virus_overview} \\
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=1]{Images/Dengue_virus_overview.jpg}
+  \caption{\citetitle{perera_structural_2008} \cite{perera_structural_2008}}
+  \label{fig:Dengue_virus_overview}
+\end{figure} \\
+
+Dengue-Viren sind Arboviren, die haupts\"achlich durch Stechm\"ucken, insbesondere die Asiatische Tigerm\"ucke (Aedes albopictus), auf den Menschen \"ubertragen werden \cite{cramer_dengue-virus_2014}. Sie geh\"oren zu einer Gruppe von Erregern, die urspr\"unglich in den Tropen verbreitet waren, aber zunehmend auch in andere Regionen, einschlie\ss{}lich Europa, verschleppt werden \cite{cramer_dengue-virus_2014}. Dengue-Viren haben sich im Zuge der Globalisierung ausgebreitet und gelten als ``Gewinner der Globalisierung'' \cite{meyding-lamade_winners_2018}.
+Sie verursachen Dengue-Fieber und in schwereren F\"allen das H\"amorrhagische Dengue-Fieber, das als eine der t\"odlichen Pandemien des 20. Jahrhunderts bezeichnet wird \cite{kuhnle_dengue-fieber_1999}. Auch in Deutschland werden immer mehr Dengue-Fieber-F\"alle aufgezeichnet Abbildung \ref{fig:Dengue_virus_infektionszahlen_deutschland}. Dengue-Viren sind besonders geschickt darin, das menschliche Immunsystem zu \"uberlisten. Sie haben "`perfide Tricks"' entwickelt, um der Immunabwehr zu entgehen \cite{janisch_klein_2017}. In Deutschland wird eine Virus-Surveillance in Stechm\"ucken durchgef\"uhrt, um potenzielle Infektionsherde fr\"uhzeitig zu erkennen \cite{cramer_dengue-virus_2014}. Die zunehmende Verbreitung von Dengue-Viren und ihren Vektoren, insbesondere durch den internationalen Reise- und Warenverkehr, stellt eine wachsende Herausforderung f\"ur das Gesundheitswesen dar, auch in Regionen, die traditionell nicht als Risikogebiete galten \cite{cramer_dengue-virus_2014}. 
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.5]{Images/infektionszahlen_dengue_virus_deutschland.jpeg}
+  \caption{\citetitle{cramer_dengue-virus_2014} \cite{cramer_dengue-virus_2014}}
+  \label{fig:Dengue_virus_infektionszahlen_deutschland}
+\end{figure}
+
+Es ist wichtig, die Mutationen der Virenfamilie zu untersuchen und Vorhersagen \"uber die Bereiche zu machen, in denen das Virus eher mutieren kann und wo eher nicht, da Viren, wie die Dengue-Viren, Meister darin sind, das Immunsystem des Menschen zu \"uberlisten. Durch Mutationen k\"onnen sie sich besser an neue Wirte und Umgebungen anpassen, was ihre Verbreitung erleichtert und die Bek\"ampfung erschwert \cite{cramer_dengue-virus_2014}\cite{janisch_klein_2017}. Das Verst\"andnis der Mutationsmuster hilft bei der epidemiologischen \"Uberwachung. Wenn bekannt ist, welche Bereiche des Virusgenoms stabil sind und welche zu Mutationen neigen, k\"onnen Gesundheitsbeh\"orden besser absch\"atzen, wann und wo neue Ausbr\"uche auftreten k\"onnten. Dies ist besonders wichtig in Regionen, in denen invasive Stechm\"uckenarten wie Aedes albopictus nachgewiesen wurden, die als Vektoren f\"ur verschiedene Viren dienen k\"onnen \cite{cramer_dengue-virus_2014}. Die F\"ahigkeit, Mutationen vorherzusagen, kann helfen, potenzielle Pandemien fr\"uhzeitig zu erkennen und Ma\ss{}nahmen zu ergreifen, bevor sich das Virus weit verbreitet \cite{janisch_klein_2017}. Durch die Identifikation stabiler und variabler Regionen des Virusgenoms k\"onnen stabilere Impfstoffe und gezieltere Therapien entwickelt werden. Bei der Entwicklung von Impfstoffen und Medikamenten ist es wichtig absch\"atzen zu k\"onnen, welche Teile des Virus mutieren, da Impfstoffe und antivirale Therapien oft auf spezifische Teile des Virus zielen. Wenn diese Teile mutieren, k\"onnen Impfstoffe und Medikamente weniger wirksam werden \cite{janisch_klein_2017}. 
+Insgesamt erm\"oglicht die Untersuchung von Virusmutationen eine proaktive und gezielte Reaktion auf virale Bedrohungen, was entscheidend f\"ur den Schutz der \"offentlichen Gesundheit ist.
+
+\section{Hydropathie und polar requirements}
 Hyropathiewerte wurden nachtr\"aglich h\"andisch ver\"andert -> 4 Werte (3 davon leicht, 1 sehr viel)
 
-\section{Polar requirements}
+Hydropathie beschreibt die Affinit\"at eines Molek\"uls zu Wasser. Molek\"ule k\"onnen als hydrophil (wasserliebend) oder hydrophob (wasserabweisend) klassifiziert werden. Diese Eigenschaften beeinflussen, wie Molek\"ule in biologischen Systemen interagieren, insbesondere in Bezug auf Membranproteine und deren Funktion. Jedes Molek\"ul hat ein charakteristisches Hydropathie-Profil, das als eine Art "`Fingerabdruck"' f\"ur seine Struktur betrachtet werden kann. Diese Profile werden h\"aufig verwendet, um die Struktur und Funktion von Membranproteinen zu analysieren und um Beziehungen zwischen verschiedenen Transportproteinen zu identifizieren. In biologischen Systemen spielen hydrophobe und hydrophile Wechselwirkungen eine entscheidende Rolle bei der Faltung von Proteinen, der Bildung von Zellmembranen und der Funktion von Enzymen. Das Verst\"andnis dieser Eigenschaften hilft bei der Vorhersage, wie Molek\"ule in zellul\"aren Umgebungen interagieren. Hydropathie-Analysen werden in der Bioinformatik und Strukturbiologie eingesetzt, um die Topologie von Membranproteinen vorherzusagen und deren funktionelle Eigenschaften besser zu verstehen. Zusammenfassend ist die Hydropathie eine grundlegende chemische Eigenschaft, die entscheidend f\"ur das Verst\"andnis der Molek\"ulinteraktionen in biologischen Systemen ist. Da sie die grundlegenden Molek\"uleigenschaften des Proteins beschreibt. 
+
+Im chemischen Kontext beziehen sich "`polar requirements"' auf die spezifischen Eigenschaften und Bedingungen, die f\"ur polare Molek\"ule oder chemische Verbindungen erforderlich sind, um in einer bestimmten Umgebung stabil zu sein oder zu interagieren. Diese Anforderungen k\"onnen die Polarit\"at, L\"oslichkeit, Wechselwirkungen mit anderen Molek\"ulen und die F\"ahigkeit zur Bildung von Wasserstoffbr\"ucken umfassen. Molek\"ule mit polaren Gruppen (z. B. Hydroxyl- oder Carboxylgruppen) haben unterschiedliche Eigenschaften im Vergleich zu unpolaren Molek\"ulen. Die Polarit\"at beeinflusst, wie Molek\"ule in L\"osungsmitteln interagieren, insbesondere in w\"assrigen L\"osungen. Polare Molek\"ule sind in polaren L\"osungsmitteln wie Wasser besser l\"oslich. Die polar requirements helfen zu bestimmen, welche Molek\"ule in bestimmten chemischen Reaktionen oder biologischen Prozessen effektiv interagieren k\"onnen. Die polar requirements sind entscheidend f\"ur die Vorhersage von Wechselwirkungen zwischen Molek\"ulen, wie z. B. zwischen Enzymen und Substraten oder zwischen Rezeptoren und Liganden. In der Biochemie sind die polar requirements wichtig f\"ur das Verst\"andnis der Struktur und Funktion von Biomolek\"ulen, einschlie\ss{}lich Proteinen und Nukleins\"auren. Auch polar requirements sind entscheidend f\"ur das grundlegende Verst\"andnis der Molek\"uleigenschaften eines Proteins. Obwohl Hydropathie und polar requirements \"ahnliche Eigenschaften untersuchen, zeigt sich bei den Werten einige unterschiede. Da nicht alle Aminos\"auren einduetig zu klassifiezieren sind, wenn man nur eine der beiden Molek\"uleigenschaften verwendet und somit wertvolle Information \"uber die Struktur des Proteins verloren geht, verwenden wir beide Werte f\"ur die Auswertung. 
 
 \section{Biopython}
 
@@ -521,6 +545,7 @@ T-Coffee is known for its high accuracy, especially when dealing with short sequ
   year={2004},
   url={https://api.semanticscholar.org/CorpusID:11171007}
 }
+
 @Article{poirot_tcoffeeigs_2003,
 	title = {Tcoffee@igs: a web server for computing, evaluating and combining multiple sequence alignments},
 	volume = {31},
@@ -537,6 +562,97 @@ T-Coffee is known for its high accuracy, especially when dealing with short sequ
 	pmcid = {PMC168929},
 	pages = {3503--3506}
 }
+
+@article{perera_structural_2008,
+	title = {Structural {Proteomics} of {Dengue} {Virus}},
+	volume = {11},
+	issn = {1369-5274},
+	url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2581888/},
+	doi = {10.1016/j.mib.2008.06.004},
+	number = {4},
+	urldate = {2024-08-07},
+	journal = {Current opinion in microbiology},
+	author = {Perera, Rushika and Kuhn, Richard J.},
+	month = aug,
+	year = {2008},
+	pmid = {18644250},
+	pmcid = {PMC2581888},
+	pages = {369--377},
+}
+
+@article{cramer_dengue-virus_2014,
+	title = {Dengue-{Virus} \& {Co}.: {Sind} durch {Stechm\"ucken} \"ubertragene {Viren} auf dem {Vormarsch}?},
+	volume = {139},
+	copyright = {\textcopyright Georg Thieme Verlag KG Stuttgart \cdot New York},
+	issn = {0012-0472, 1439-4413},
+	shorttitle = {Dengue-{Virus} \& {Co}.},
+	url = {http://www.thieme-connect.de/DOI/DOI?10.1055/s-0033-1359968},
+	doi = {10.1055/s-0033-1359968},
+	abstract = {Thieme E-Books \& E-Journals},
+	language = {de},
+	number = {06},
+	urldate = {2024-08-08},
+	journal = {DMW - Deutsche Medizinische Wochenschrift},
+	author = {Cramer, J. P. and Schmidt-Chanasit, J.},
+	month = feb,
+	year = {2014},
+	note = {Company: \textcopyright Georg Thieme Verlag KG
+Distributor: \textcopyright Georg Thieme Verlag KG
+Institution: \textcopyright Georg Thieme Verlag KG
+Label: \textcopyright Georg Thieme Verlag KG
+Publisher: \textcopyright Georg Thieme Verlag KG},
+	pages = {247--250},
+}
+@article{meyding-lamade_winners_2018,
+	title = {[{Winners} of globalization: dengue viruses and {Japanese} encephalitis virus-{Diseases} in neurology]},
+	volume = {89},
+	issn = {1433-0407},
+	shorttitle = {[{Winners} of globalization},
+	doi = {10.1007/s00115-018-0616-z},
+	language = {ger},
+	number = {12},
+	journal = {Der Nervenarzt},
+	author = {Meyding-Lamad\'e, U. and Craemer, E. M.},
+	month = dec,
+	year = {2018},
+	pmid = {30251003},
+	pages = {1338--1343},
+}
+
+@inproceedings{janisch_klein_2017,
+	title = {Klein und gemein. {Die} perfiden {Tricks} der {Viren}},
+	url = {https://heiup.uni-heidelberg.de/journals/index.php/rupertocarola/article/view/23760},
+	doi = {10.17885/HEIUP.RUCA.2017.11.23760},
+	language = {de},
+	urldate = {2024-08-08},
+	booktitle = {Ruperto {Carola}},
+	publisher = {Ruperto Carola},
+	author = {J\"anisch, Thomas and Bartenschlager, Ralf},
+	month = dec,
+	year = {2017},
+	pages = {Nr. 11 (2017): Schein \& Sein},
+	annote = {SeriesInformation
+Ruperto Carola, Nr. 11 (2017): Schein \& Sein},
+}
+
+@article{kuhnle_dengue-fieber_1999,
+	title = {Dengue-{Fieber} und {H\"amorrhagisches} {Dengue}-{FieberDie} t\"odliche {Pandemie} des 20.{Jahrhunderts}: {Die} t\"odliche {Pandemie} des 20.{Jahrhunderts}},
+	volume = {147},
+	copyright = {http://www.springer.com/tdm},
+	issn = {0026-9298, 1433-0474},
+	shorttitle = {Dengue-{Fieber} und {H\"amorrhagisches} {Dengue}-{FieberDie} t\"odliche {Pandemie} des 20.{Jahrhunderts}},
+	url = {http://link.springer.com/10.1007/s001120050397},
+	doi = {10.1007/s001120050397},
+	language = {de},
+	number = {1},
+	urldate = {2024-08-08},
+	journal = {Monatsschrift Kinderheilkunde},
+	author = {Kuhnle, U. and Krahl, W.},
+	month = jan,
+	year = {1999},
+	pages = {48--50},
+}
+
 
 \end{bibtex-entries}
 

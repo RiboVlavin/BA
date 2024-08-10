@@ -98,7 +98,7 @@ def calculate_polar_requirements_score(protein_sequence):
     return score/len(protein_sequence)
 
 
-for sequence in SeqIO.parse("dengue_virus.fasta", "fasta"):
+for sequence in SeqIO.parse("dengue_virus_dna.fasta", "fasta"):
     print(sequence.id)
     print(repr(sequence.seq))
     print(repr(sequence.translate().seq))

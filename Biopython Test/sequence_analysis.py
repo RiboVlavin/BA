@@ -98,9 +98,10 @@ def calculate_polar_requirements_score(protein_sequence):
     return score/len(protein_sequence)
 
 
-def count_mutations(sequences, sequence_length):
+# Funktioniert nur, wenn alle Sequenzen in sequences die gleiche Länge haben
+def count_mutations(sequences):
     mutations = 0
-    for i in sequence_length:
+    for i in len(sequences[0]):
         same = True
         for sequence in sequences[1:]:
             if sequences[0][i] != sequence[i]:

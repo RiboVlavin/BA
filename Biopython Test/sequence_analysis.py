@@ -45,7 +45,7 @@ def get_normalized_hydropathy(aminoacid):
 extreme_value_polar_requirements = 8.95 # Mittelwert der restlichen Scores
 polar_requirements_scores = {
     "A":  7.0,  # A: alanine
-    "B": 11.5,  # B: aspartate (aspartic acid)/asparagine -> Achtung: hier wurde der Mittelwert zwischen den beiden Säuren verwendet
+    "B": 11.5,  # B: easpartate (aspartic acid)/asparagine -> Achtung: hier wurde der Mittelwert zwischen den biden Säuren verwendet
     "C": 11.5,  # C: cystine
     "D": 13.0,  # D: aspartate (aspartic acid)
     "E": 12.5,  # E: glutamate (glutamic acid)
@@ -98,9 +98,22 @@ def calculate_polar_requirements_score(protein_sequence):
     return score/len(protein_sequence)
 
 
-for sequence in SeqIO.parse("dengue_virus_dna.fasta", "fasta"):
-    print(sequence.id)
-    print(repr(sequence.seq))
-    print(repr(sequence.translate().seq))
-    print(calculate_hydropathy_score(sequence.translate()))
-    print(calculate_polar_requirements_score(sequence.translate()))
+def count_mutations(sequences, sequence_length):
+    mutations = 0
+    for i in sequence_length:
+        same = True
+        for sequence in sequences[1:]:
+            if sequences[0][i] != sequence[i]:
+                same = False
+                break
+        if not same:
+            mutations += 1
+    return mutations
+
+
+for dna_sequence in SeqIO.parse("dengue_virus_dna.fasta", "fasta"):
+    print(dna_sequence.id)
+    print(repr(dna_sequence.seq))
+    print(repr(dna_sequence.translate().seq))
+    print(calculate_hydropathy_score(dna_sequence.translate()))
+    print(calculate_polar_requirements_score(dna_sequence.translate()))

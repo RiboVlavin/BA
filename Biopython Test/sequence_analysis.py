@@ -112,6 +112,35 @@ def count_mutations(sequences):
     return mutations
 
 
+# returns a value between 0 and 1.
+# 0 bedeutet, dass es keine Änderungen zwischen den Seuquenzen gab
+# 1 bedeutet, dass es an jeder Stelle der Sequenzen zu den größten Abständen an mindestens 2 der eingegeben Sequenzen
+# gab. Größter Abstand bedeutet hier, dass sowohl bei den polar_requirements als auch bei der hydropathy die jeweils
+# größten und kleinsten Werte der Skala vertreten waren.
+def calculate_score(sequences):
+    sequence_length = len(sequences[0])
+    cumulative_polar_requirements_difference = 0
+    cumulative_hydropathy_difference = 0
+    for i in sequence_length:
+        min_polar_requirements_score = 1
+        max_polar_requirements_score = 0
+        min_hydropathy_score = 1
+        max_hydropathy_score = 0
+        for sequence in sequences:
+            if get_normalized_polar_requirements(sequence[i]) < min_polar_requirements_score:
+                min_polar_requirements_score = get_normalized_polar_requirements(sequence[i])
+            if get_normalized_polar_requirements(sequence[i]) > max_polar_requirements_score:
+                max_polar_requirements_score = get_normalized_polar_requirements(sequence[i])
+            if get_normalized_hydropathy(sequence[i]) < min_hydropathy_score:
+                min_hydropathy_score = get_normalized_hydropathy(sequence[i])
+            if get_normalized_hydropathy(sequence[i]) > max_hydropathy_score:
+                max_hydropathy_score = get_normalized_hydropathy(sequence[i])
+        cumulative_polar_requirements_difference += max_polar_requirements_score - min_polar_requirements_score
+        cumulative_hydropathy_difference += max_hydropathy_score - min_hydropathy_score
+    return (cumulative_polar_requirements_difference/sequence_length + cumulative_hydropathy_difference/sequence_length)/2
+
+
+
 for dna_sequence in SeqIO.parse("dengue_virus_dna.fasta", "fasta"):
     print(dna_sequence.id)
     print(repr(dna_sequence.seq))

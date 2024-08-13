@@ -152,11 +152,20 @@ def automatic_sequence_sections(sequence_length, amount_of_sequences):
         math.ceil((amount_of_sequences - 1) * step_width),
         math.ceil(amount_of_sequences * step_width) + 1
     )
+    return sequence_sections
 
 
-for dna_sequence in SeqIO.parse("dengue_virus_dna.fasta", "fasta"):
-    print(dna_sequence.id)
-    print(repr(dna_sequence.seq))
-    print(repr(dna_sequence.translate().seq))
-    print(calculate_hydropathy_score(dna_sequence.translate()))
-    print(calculate_polar_requirements_score(dna_sequence.translate()))
+def calculate_scores_and_mutations(dataset_name, dataset_type, sequence_sections):
+    sequences = []
+    for sequence in SeqIO.parse(dataset_name, dataset_type):
+        sequences.append(sequence)
+    score_per_section = []
+    mutations_per_section = []
+    for section in sequence_sections:
+        partial_sequences = []
+        for i in sequences:
+            partial_sequences.append(sequences[i][section[0]:section[1]])
+        score_per_section.append(calculate_score(partial_sequences))
+        mutations_per_section.append(count_mutations(partial_sequences))
+    return score_per_section, mutations_per_section
+

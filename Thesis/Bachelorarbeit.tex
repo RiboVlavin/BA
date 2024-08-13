@@ -434,6 +434,8 @@ T-Coffee is known for its high accuracy, especially when dealing with short sequ
 \chapter{Die Pipeline}
 Um die Mutationen zu z\"ahlen nutzen wir aktuell einen sehr naiven Ansatz, indem wir f\"ur alle Sequenzen nur schauen, ob an einer Stelle alle Aminos\"auren gleich sind oder ob es mindestens eine Sequenz gibt, in der es eine andere Aminos\"aure an der Stelle gibt. Wir z\"ahlen nicht, wie viele verschiedene Aminos\"auren es an der Stelle gibt. Wenn wir also eine Mutation z\"ahlen, meine wir, dass an der jeweiligen Stelle mindestens eine Sequenz eine andere Aminos\"aure aufweist, als die Aminos\"aure in der ersten Sequenz. 
 
+Bei der Berechnung der Scores schauen wir immer nach den Extremwerten, also dem minimalen Wert und dem maximalen Wert, die die Aminos\"auren bei den polar requirements, bzw. bei der Hydropathie erreichen. Da auch gaps einen Wert vergeben bekommen (immer den mittleren Wert \"uber alle Werte der beiden Skalen), kann es dazu kommen, dass sich hierdurch an manchen Stellen extremere Werte aufgezeichnet werden, als wenn man nur die tats\"achlich existierenden Aminos\"auren an der jeweiligen Stelle vergleicht. Man muss dabei aber bedenken, dass gaps eine Folge von Mutationen sind und somit auch bei der Berechnung des Scores beachtet werden k\"onnen. Ob dies jedoch sinnvoll ist, bei der Berechnung der Scores und nicht bei der Mutationsz\"ahlung ist fraglich. 
+
 \chapter{Zusammenfassung und Ausblick}
 % In a German thesis write: \subsection{Zusammenfassung und Ausblick}
 

@@ -1,4 +1,5 @@
 from Bio import SeqIO
+import math
 
 extreme_value_hydropathy = 0
 hydropathy_scores = {
@@ -139,6 +140,18 @@ def calculate_score(sequences):
         cumulative_hydropathy_difference += max_hydropathy_score - min_hydropathy_score
     return (cumulative_polar_requirements_difference/sequence_length + cumulative_hydropathy_difference/sequence_length)/2
 
+
+# erster Abschnitt beginnt bei 0 und der letzte Abschnitt endet bei der sequence_length + 1
+# die Abschnitt sind also immer inklusive des ersten Wertes zu sehen und exklusive des Letzten
+def automatic_sequence_sections(sequence_length, amount_of_sequences):
+    sequence_sections = []
+    step_width = sequence_length / amount_of_sequences
+    for i in range(1, amount_of_sequences + 1):
+        sequence_sections.append((math.ceil((i-1) * step_width), math.ceil(i * step_width)))
+    sequence_sections[-1] = (
+        math.ceil((amount_of_sequences - 1) * step_width),
+        math.ceil(amount_of_sequences * step_width) + 1
+    )
 
 
 for dna_sequence in SeqIO.parse("dengue_virus_dna.fasta", "fasta"):

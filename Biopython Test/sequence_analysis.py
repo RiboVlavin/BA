@@ -1,5 +1,6 @@
 from Bio import SeqIO
 import math
+import matplotlib.pyplot as plt
 
 extreme_value_hydropathy = 0
 hydropathy_scores = {
@@ -102,7 +103,7 @@ def calculate_polar_requirements_score(protein_sequence):
 # Funktioniert nur, wenn alle Sequenzen in sequences die gleiche Länge haben
 def count_mutations(sequences):
     mutations = 0
-    for i in len(sequences[0]):
+    for i in range(len(sequences[0])):
         same = True
         for sequence in sequences[1:]:
             if sequences[0][i] != sequence[i]:
@@ -122,7 +123,7 @@ def calculate_score(sequences):
     sequence_length = len(sequences[0])
     cumulative_polar_requirements_difference = 0
     cumulative_hydropathy_difference = 0
-    for i in sequence_length:
+    for i in range(sequence_length):
         min_polar_requirements_score = 1
         max_polar_requirements_score = 0
         min_hydropathy_score = 1
@@ -158,14 +159,91 @@ def automatic_sequence_sections(sequence_length, amount_of_sequences):
 def calculate_scores_and_mutations(dataset_name, dataset_type, sequence_sections):
     sequences = []
     for sequence in SeqIO.parse(dataset_name, dataset_type):
-        sequences.append(sequence)
+        sequences.append(sequence.seq)
     score_per_section = []
     mutations_per_section = []
     for section in sequence_sections:
         partial_sequences = []
-        for i in sequences:
-            partial_sequences.append(sequences[i][section[0]:section[1]])
+        for sequence in sequences:
+            partial_sequences.append(sequence[section[0]:section[1]])
         score_per_section.append(calculate_score(partial_sequences))
         mutations_per_section.append(count_mutations(partial_sequences))
     return score_per_section, mutations_per_section
 
+
+# eine Hilfsfunktion, die die Länge der ersten Sequenz einer fasta Datei berechnet
+def calculate_sequence_length(file_path):
+    with open(file_path, 'r') as file:
+        # Erste Zeile lesen (Sequenz-ID)
+        file.readline()
+        # Sequenzdaten lesen
+        sequence = ''
+        for line in file:
+            if line.startswith('>'):
+                break  # Nächste Sequenz-ID erreicht
+            sequence += line.strip()
+        # Länge der Sequenz berechnen
+        seq_length = len(sequence)
+        return seq_length
+
+
+# ab hier verarbeiten wir einmal den dengue_virus Datensatz mit dem naiven automatisierten Sequenzteilen und einer
+# Anzahl von 10 Seuqenzteilen
+# wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
+amount_of_sequences = 10
+sequence_length = calculate_sequence_length("aligned_dengue_virus_protein.fasta")
+result_automatic_sequence_sections = automatic_sequence_sections(sequence_length, amount_of_sequences)
+scores_and_mutations = calculate_scores_and_mutations("aligned_dengue_virus_protein.fasta", "fasta", result_automatic_sequence_sections)
+
+# plot erstellen mit den Scores der Sequenzteile
+categories = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
+plt.bar(categories, scores_and_mutations[0])
+plt.xlabel('Abschnitte als Indizes')
+plt.ylabel('Score')
+plt.title('Balkendiagramm: Scores')
+# x-Achsenbeschriftungen drehen
+plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
+# Mehr Platz für die x-Achsenbeschriftungen schaffen
+plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
+plt.show()
+
+# plot erstellen mit den Anzahl an Muationen
+categories = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
+plt.bar(categories, scores_and_mutations[1])
+plt.xlabel('Abschnitte als Indizes')
+plt.ylabel('Anzahl an Mutationen')
+plt.title('Balkendiagramm: Mutationen')
+# x-Achsenbeschriftungen drehen
+plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
+# Mehr Platz für die x-Achsenbeschriftungen schaffen
+plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
+plt.show()
+
+# plot erstellen mit Scores und Mutationen
+# Beispieldaten erstellen
+x = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
+y1 = scores_and_mutations[0]
+y2 = scores_and_mutations[1]
+# Diagramm erstellen
+fig, ax1 = plt.subplots()
+# Erste y-Achse plotten
+color = 'tab:red'
+ax1.set_xlabel('Abschnitte als Indizes')
+ax1.set_ylabel('Score', color=color)
+ax1.plot(x, y1, color=color)
+ax1.tick_params(axis='y', labelcolor=color)
+# Zweite y-Achse erstellen
+ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
+# Zweite y-Achse plotten
+color = 'tab:blue'
+ax2.set_ylabel('Anzahl an Mutationen', color=color)
+ax2.plot(x, y2, color=color)
+ax2.tick_params(axis='y', labelcolor=color)
+# x-Achsenbeschriftungen drehen
+ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
+ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
+# Mehr Platz für die x-Achsenbeschriftungen schaffen
+plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
+# Titel und Gitternetz hinzufügen
+fig.suptitle('Diagramm mit Scores und Muationen')
+plt.show()

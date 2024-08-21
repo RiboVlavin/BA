@@ -191,9 +191,9 @@ def calculate_sequence_length(file_path):
 # Anzahl von 10 Seuqenzteilen
 # wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
 amount_of_sequences = 10
-sequence_length = calculate_sequence_length("aligned_dengue_virus_protein.fasta")
+sequence_length = calculate_sequence_length("aligned_polyprotein_dengue_virus.fasta")
 result_automatic_sequence_sections = automatic_sequence_sections(sequence_length, amount_of_sequences)
-scores_and_mutations = calculate_scores_and_mutations("aligned_dengue_virus_protein.fasta", "fasta", result_automatic_sequence_sections)
+scores_and_mutations = calculate_scores_and_mutations("aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
 
 # plot erstellen mit den Scores der Sequenzteile
 categories = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]

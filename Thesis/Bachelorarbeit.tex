@@ -432,15 +432,22 @@ T-Coffee (Tree-based Consistency Objective Function for Alignment Evaluation) is
 T-Coffee is known for its high accuracy, especially when dealing with short sequences. It has been benchmarked against other alignment tools and has shown to produce alignments with accuracy comparable to or better than other methods like MUSCLE \cite{Edgar2004MUSCLEL}.
 
 \chapter{Die Pipeline}
-Um die Mutationen zu z\"ahlen nutzen wir aktuell einen sehr naiven Ansatz, indem wir f\"ur alle Sequenzen nur schauen, ob an einer Stelle alle Aminos\"auren gleich sind oder ob es mindestens eine Sequenz gibt, in der es eine andere Aminos\"aure an der Stelle gibt. Wir z\"ahlen nicht, wie viele verschiedene Aminos\"auren es an der Stelle gibt. Wenn wir also eine Mutation z\"ahlen, meine wir, dass an der jeweiligen Stelle mindestens eine Sequenz eine andere Aminos\"aure aufweist, als die Aminos\"aure in der ersten Sequenz. 
+Um die Mutationen zu z\"ahlen nutzen wir aktuell einen sehr naiven Ansatz, indem wir f\"ur alle Sequenzen nur schauen, ob an einer Stelle alle Aminos\"auren gleich sind oder ob es mindestens eine Sequenz gibt, in der es eine andere Aminos\"aure an der Stelle gibt. Wir z\"ahlen nicht, wie viele verschiedene Aminos\"auren es an der Stelle gibt. Wenn wir also eine Mutation z\"ahlen, meine wir, dass an der jeweiligen Stelle mindestens eine Sequenz eine andere Aminos\"aure aufweist, als die Aminos\"aure in der ersten Sequenz. Wir berechen die Anzahl an Mutationen und zeigen diese dann anteilig f\"ur die L\"ange der jeweiligen Sequenz an. Wir berechnen also, verh\"altnism\"a\ss{}ig, an wie vielen Stellen die Sequenz mutiert ist.
 
 Bei der Berechnung der Scores schauen wir immer nach den Extremwerten, also dem minimalen Wert und dem maximalen Wert, die die Aminos\"auren bei den polar requirements, bzw. bei der Hydropathie erreichen. Da auch gaps einen Wert vergeben bekommen (immer den mittleren Wert \"uber alle Werte der beiden Skalen), kann es dazu kommen, dass sich hierdurch an manchen Stellen extremere Werte aufgezeichnet werden, als wenn man nur die tats\"achlich existierenden Aminos\"auren an der jeweiligen Stelle vergleicht. Man muss dabei aber bedenken, dass gaps eine Folge von Mutationen sind und somit auch bei der Berechnung des Scores beachtet werden k\"onnen. Ob dies jedoch sinnvoll ist, bei der Berechnung der Scores und nicht bei der Mutationsz\"ahlung ist fraglich. 
 
 \begin{figure}[htpb]
   \centering
-  \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren.png}
-  \caption{Diagramm: Scores und Mutationen Dengue viren automatische Auteilung der Sequenzen in 10 gleich gro\ss{}e Bereiche}
-  \label{fig:Dengue_virus_scores_and_mutations}
+  \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren_Bereiche.png}
+  \caption{Diagramm: Scores und Mutationen Dengue viren: automatische Auteilung der Sequenzen in 10 gleich gro\ss{}e Bereiche}
+  \label{fig:Dengue_virus_scores_and_mutations_bereiche}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren_Namen.png}
+  \caption{Diagramm: Scores und Mutationen Dengue viren: Auteilung nach Proteinen/ Bereichen}
+  \label{fig:Dengue_virus_scores_and_mutations_namen}
 \end{figure}
 
 \chapter{Zusammenfassung und Ausblick}

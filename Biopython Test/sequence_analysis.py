@@ -1,6 +1,7 @@
 from Bio import SeqIO
 import math
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 extreme_value_hydropathy = 0
 hydropathy_scores = {
@@ -101,9 +102,10 @@ def calculate_polar_requirements_score(protein_sequence):
 
 
 # Funktioniert nur, wenn alle Sequenzen in sequences die gleiche Länge haben
-def count_mutations(sequences):
+def calculate_mutations_per_length(sequences):
     mutations = 0
-    for i in range(len(sequences[0])):
+    sequence_length = len(sequences[0])
+    for i in range(sequence_length):
         same = True
         for sequence in sequences[1:]:
             if sequences[0][i] != sequence[i]:
@@ -111,7 +113,7 @@ def count_mutations(sequences):
                 break
         if not same:
             mutations += 1
-    return mutations
+    return mutations/sequence_length
 
 
 # returns a value between 0 and 1.
@@ -167,7 +169,7 @@ def calculate_scores_and_mutations(dataset_name, dataset_type, sequence_sections
         for sequence in sequences:
             partial_sequences.append(sequence[section[0]:section[1]])
         score_per_section.append(calculate_score(partial_sequences))
-        mutations_per_section.append(count_mutations(partial_sequences))
+        mutations_per_section.append(calculate_mutations_per_length(partial_sequences))
     return score_per_section, mutations_per_section
 
 
@@ -187,12 +189,37 @@ def calculate_sequence_length(file_path):
         return seq_length
 
 
+# diese Funktion nutzt einen Ordner als Eingabe und berechnet die Scores/ Mutations und gibt die Namen zurück für die Eingabe in ein Diagramm
+def generate_output_with_a_folder(output_folder):
+    file_names = []
+    score_per_file = []
+    mutations_per_file = []
+    output_dir = Path(output_folder)
+    # Stelle sicher, dass der Ordner existiert
+    if not output_dir.exists():
+        print(f"Der Ordner {output_dir} existiert nicht.")
+    else:
+        # Iteriere über alle Dateien im Ordner
+        for file in output_dir.iterdir():
+            # Überprüfe, ob die Datei eine FASTA-Datei ist
+            if file.suffix == ".fasta":
+                file_names.append(file.stem)
+                sequences = []
+                # Lese die FASTA-Datei und speichere die Sequenzen
+                with open(file, 'r') as handle:
+                    for sequence in SeqIO.parse(handle, "fasta"):
+                        sequences.append(sequence.seq)
+                score_per_file.append(calculate_score(sequences))
+                mutations_per_file.append(calculate_mutations_per_length(sequences))
+    return file_names, score_per_file, mutations_per_file
+
+
 # ab hier verarbeiten wir einmal den dengue_virus Datensatz mit dem naiven automatisierten Sequenzteilen und einer
 # Anzahl von 10 Seuqenzteilen
 # wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
-amount_of_sequences = 10
-sequence_length = calculate_sequence_length("aligned_polyprotein_dengue_virus.fasta")
-result_automatic_sequence_sections = automatic_sequence_sections(sequence_length, amount_of_sequences)
+outer_scope_amount_of_sequences = 10
+outer_scope_sequence_length = calculate_sequence_length("aligned_polyprotein_dengue_virus.fasta")
+result_automatic_sequence_sections = automatic_sequence_sections(outer_scope_sequence_length, outer_scope_amount_of_sequences)
 scores_and_mutations = calculate_scores_and_mutations("aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
 
 # plot erstellen mit den Scores der Sequenzteile
@@ -211,7 +238,7 @@ plt.show()
 categories = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
 plt.bar(categories, scores_and_mutations[1])
 plt.xlabel('Abschnitte als Indizes')
-plt.ylabel('Anzahl an Mutationen')
+plt.ylabel('Anteil an Mutationen')
 plt.title('Balkendiagramm: Mutationen')
 # x-Achsenbeschriftungen drehen
 plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
@@ -236,7 +263,7 @@ ax1.tick_params(axis='y', labelcolor=color)
 ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
 # Zweite y-Achse plotten
 color = 'tab:blue'
-ax2.set_ylabel('Anzahl an Mutationen', color=color)
+ax2.set_ylabel('Anteil an Mutationen', color=color)
 ax2.plot(x, y2, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
 # x-Achsenbeschriftungen drehen
@@ -245,5 +272,61 @@ ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen de
 # Mehr Platz für die x-Achsenbeschriftungen schaffen
 plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
 # Titel und Gitternetz hinzufügen
-fig.suptitle('Diagramm mit Scores und Muationen')
+fig.suptitle('Diagramm mit Scores und Mutationen')
+plt.show()
+
+
+# ab hier wird der Ordner aligned_dengue_virus ausgewertet
+# wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
+outer_scope_file_names, outer_scope_score_per_file, outer_scope_mutations_per_file = generate_output_with_a_folder("aligned_dengue_virus")
+
+# plot erstellen mit den Scores der Sequenzteile
+plt.bar(outer_scope_file_names, outer_scope_score_per_file)
+plt.xlabel('Namen der Regionen/ Proteine')
+plt.ylabel('Score')
+plt.title('Balkendiagramm: Scores')
+# x-Achsenbeschriftungen drehen
+plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
+# Mehr Platz für die x-Achsenbeschriftungen schaffen
+plt.subplots_adjust(bottom=0.5)  # Mehr Platz unten hinzufügen
+plt.show()
+
+# plot erstellen mit den Anzahl an Muationen
+plt.bar(outer_scope_file_names, outer_scope_mutations_per_file)
+plt.xlabel('Namen der Regionen/ Proteine')
+plt.ylabel('Anteil an Mutationen')
+plt.title('Balkendiagramm: Mutationen')
+# x-Achsenbeschriftungen drehen
+plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
+# Mehr Platz für die x-Achsenbeschriftungen schaffen
+plt.subplots_adjust(bottom=0.5)  # Mehr Platz unten hinzufügen
+plt.show()
+
+# plot erstellen mit Scores und Mutationen
+# Beispieldaten erstellen
+x = outer_scope_file_names
+y1 = outer_scope_score_per_file
+y2 = outer_scope_mutations_per_file
+# Diagramm erstellen
+fig, ax1 = plt.subplots()
+# Erste y-Achse plotten
+color = 'tab:red'
+ax1.set_xlabel('Namen der Regionen/ Proteine')
+ax1.set_ylabel('Score', color=color)
+ax1.plot(x, y1, color=color)
+ax1.tick_params(axis='y', labelcolor=color)
+# Zweite y-Achse erstellen
+ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
+# Zweite y-Achse plotten
+color = 'tab:blue'
+ax2.set_ylabel('Anteil an Mutationen', color=color)
+ax2.plot(x, y2, color=color)
+ax2.tick_params(axis='y', labelcolor=color)
+# x-Achsenbeschriftungen drehen
+ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
+ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
+# Mehr Platz für die x-Achsenbeschriftungen schaffen
+plt.subplots_adjust(bottom=0.5)  # Mehr Platz unten hinzufügen
+# Titel und Gitternetz hinzufügen
+fig.suptitle('Diagramm mit Scores und Mutationen')
 plt.show()

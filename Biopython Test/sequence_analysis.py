@@ -2,6 +2,8 @@ from Bio import SeqIO
 import math
 import matplotlib.pyplot as plt
 from pathlib import Path
+import numpy as np
+import random
 
 extreme_value_hydropathy = 0
 hydropathy_scores = {
@@ -214,14 +216,38 @@ def generate_output_with_a_folder(output_folder):
     return file_names, score_per_file, mutations_per_file
 
 
+def random_sequence_permutation(dataset_name, dataset_type, number_of_swaps, output_file):
+    headers = []
+    sequences = []
+    for sequence in SeqIO.parse(dataset_name, dataset_type):
+        headers.append(sequence.id)
+        sequences.append(list(sequence.seq))
+    for _ in range(number_of_swaps):
+        index1, index2 = random.randint(0, len(sequences[0]) - 1), random.randint(0, len(sequences[0]) - 1)
+        for sequence in sequences:
+            seq1 = sequence[index1]
+            seq2 = sequence[index2]
+            sequence[index1], sequence[index2] = seq2, seq1
+    modified_sequences = []
+    for seq in sequences:
+        modified_sequences.append("".join(seq))  # Konvertiere die Liste von Zeichen zurück in eine Sequenz
+    with open(output_file, "w") as file:
+        for header, seq in zip(headers, modified_sequences):
+            file.write(f">{header}\n{seq}\n")
+
+
+# random_sequence_permutation("aligned_polyprotein_dengue_virus.fasta", "fasta", 100, "random_aligned_polyprotein_dengue_virus.fasta")
+
+
 # ab hier verarbeiten wir einmal den dengue_virus Datensatz mit dem naiven automatisierten Sequenzteilen und einer
 # Anzahl von 10 Seuqenzteilen
 # wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
-outer_scope_amount_of_sequences = 10
-outer_scope_sequence_length = calculate_sequence_length("aligned_polyprotein_dengue_virus.fasta")
+outer_scope_amount_of_sequences = 20
+outer_scope_sequence_length = calculate_sequence_length("random_aligned_polyprotein_dengue_virus.fasta")
 result_automatic_sequence_sections = automatic_sequence_sections(outer_scope_sequence_length, outer_scope_amount_of_sequences)
-scores_and_mutations = calculate_scores_and_mutations("aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
+scores_and_mutations = calculate_scores_and_mutations("random_aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
 
+"""
 # plot erstellen mit den Scores der Sequenzteile
 categories = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
 plt.bar(categories, scores_and_mutations[0])
@@ -245,12 +271,16 @@ plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal aus
 # Mehr Platz für die x-Achsenbeschriftungen schaffen
 plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
 plt.show()
+"""
 
 # plot erstellen mit Scores und Mutationen
 # Beispieldaten erstellen
 x = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
 y1 = scores_and_mutations[0]
 y2 = scores_and_mutations[1]
+# Durchschnittswerte berechnen
+mean_y1 = np.mean(y1)
+mean_y2 = np.mean(y2)
 # Diagramm erstellen
 fig, ax1 = plt.subplots()
 # Erste y-Achse plotten
@@ -259,6 +289,8 @@ ax1.set_xlabel('Abschnitte als Indizes')
 ax1.set_ylabel('Score', color=color)
 ax1.plot(x, y1, color=color)
 ax1.tick_params(axis='y', labelcolor=color)
+# Durchschnittslinie für die erste y-Achse
+ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschnitt Score')
 # Zweite y-Achse erstellen
 ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
 # Zweite y-Achse plotten
@@ -266,6 +298,11 @@ color = 'tab:blue'
 ax2.set_ylabel('Anteil an Mutationen', color=color)
 ax2.plot(x, y2, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
+# Durchschnittslinie für die zweite y-Achse
+ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationen')
+# Legende hinzufügen
+ax1.legend(loc='upper left')
+ax2.legend(loc='upper right')
 # x-Achsenbeschriftungen drehen
 ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
 ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
@@ -275,7 +312,7 @@ plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
 fig.suptitle('Diagramm mit Scores und Mutationen')
 plt.show()
 
-
+"""
 # ab hier wird der Ordner aligned_dengue_virus ausgewertet
 # wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
 outer_scope_file_names, outer_scope_score_per_file, outer_scope_mutations_per_file = generate_output_with_a_folder("aligned_dengue_virus")
@@ -307,6 +344,9 @@ plt.show()
 x = outer_scope_file_names
 y1 = outer_scope_score_per_file
 y2 = outer_scope_mutations_per_file
+# Durchschnittswerte berechnen
+mean_y1 = np.mean(y1)
+mean_y2 = np.mean(y2)
 # Diagramm erstellen
 fig, ax1 = plt.subplots()
 # Erste y-Achse plotten
@@ -315,6 +355,8 @@ ax1.set_xlabel('Namen der Regionen/ Proteine')
 ax1.set_ylabel('Score', color=color)
 ax1.plot(x, y1, color=color)
 ax1.tick_params(axis='y', labelcolor=color)
+# Durchschnittslinie für die erste y-Achse
+ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschnitt Score')
 # Zweite y-Achse erstellen
 ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
 # Zweite y-Achse plotten
@@ -322,6 +364,11 @@ color = 'tab:blue'
 ax2.set_ylabel('Anteil an Mutationen', color=color)
 ax2.plot(x, y2, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
+# Durchschnittslinie für die zweite y-Achse
+ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationen')
+# Legende hinzufügen
+ax1.legend(loc='upper left')
+ax2.legend(loc='upper right')
 # x-Achsenbeschriftungen drehen
 ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
 ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
@@ -330,3 +377,4 @@ plt.subplots_adjust(bottom=0.5)  # Mehr Platz unten hinzufügen
 # Titel und Gitternetz hinzufügen
 fig.suptitle('Diagramm mit Scores und Mutationen')
 plt.show()
+"""

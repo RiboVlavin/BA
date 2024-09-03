@@ -554,7 +554,8 @@ plt.show()
 
 
 # plots mit random Sequenzverteilung und 20 Abschnitten (kombinierte Graphik mit Scores und Mutations; naiver Ansatz)
-random_sequence_permutation("aligned_polyprotein_dengue_virus.fasta", "fasta", 1000, "random_aligned_polyprotein_dengue_virus.fasta")
+outer_scope_number_of_swaps = 1000
+random_sequence_permutation("aligned_polyprotein_dengue_virus.fasta", "fasta", outer_scope_number_of_swaps, "random_aligned_polyprotein_dengue_virus.fasta")
 outer_scope_amount_of_sequences = 20
 outer_scope_sequence_length = calculate_sequence_length("random_aligned_polyprotein_dengue_virus.fasta")
 result_automatic_sequence_sections = automatic_sequence_sections(outer_scope_sequence_length, outer_scope_amount_of_sequences)

@@ -393,6 +393,9 @@
 %
 % Replace the whole text chapter with the main text of your thesis! 
 
+\chapter{Theoretische Grundlagen}
+
+
 \chapter{Material und Methoden}%: Document Setup and Document Structure}
 \label{chapter-use}
 
@@ -431,10 +434,39 @@ Im chemischen Kontext beziehen sich "`polar requirements"' auf die spezifischen 
 T-Coffee (Tree-based Consistency Objective Function for Alignment Evaluation) is a multiple sequence alignment tool widely used in bioinformatics for aligning DNA, RNA, and protein sequences. T-Coffee works by employing an alignment strategy combined with a consistency-based scoring function. The algorithm for T-Coffee is primarily described in the original publication \citetitle{poirot_tcoffeeigs_2003} \cite{poirot_tcoffeeigs_2003}. The algorithm has the following main steps. T-Coffee first generates all possible pairwise alignments between the input sequences using global and local alignment methods. It then builds a primary library of alignment information from these pairwise alignments, assigning weights to each aligned residue pair based on their consistency across different alignments. The primary library is extended by incorporating transitive alignments, which helps in capturing indirect relationships between sequences. Using the extended library, T-Coffee constructs a guide tree and performs a progressive alignment, aligning the most similar sequences first and gradually adding more distant sequences. The initial alignment is iteratively refined to improve its overall quality and consistency.
 T-Coffee is known for its high accuracy, especially when dealing with short sequences. It has been benchmarked against other alignment tools and has shown to produce alignments with accuracy comparable to or better than other methods like MUSCLE \cite{Edgar2004MUSCLEL}.
 
-\chapter{Die Pipeline}
+
+\chapter{Ergebnisse}
 Um die Mutationen zu z\"ahlen nutzen wir aktuell einen sehr naiven Ansatz, indem wir f\"ur alle Sequenzen nur schauen, ob an einer Stelle alle Aminos\"auren gleich sind oder ob es mindestens eine Sequenz gibt, in der es eine andere Aminos\"aure an der Stelle gibt. Wir z\"ahlen nicht, wie viele verschiedene Aminos\"auren es an der Stelle gibt. Wenn wir also eine Mutation z\"ahlen, meine wir, dass an der jeweiligen Stelle mindestens eine Sequenz eine andere Aminos\"aure aufweist, als die Aminos\"aure in der ersten Sequenz. Wir berechen die Anzahl an Mutationen und zeigen diese dann anteilig f\"ur die L\"ange der jeweiligen Sequenz an. Wir berechnen also, verh\"altnism\"a\ss{}ig, an wie vielen Stellen die Sequenz mutiert ist.
 
 Bei der Berechnung der Scores schauen wir immer nach den Extremwerten, also dem minimalen Wert und dem maximalen Wert, die die Aminos\"auren bei den polar requirements, bzw. bei der Hydropathie erreichen. Da auch gaps einen Wert vergeben bekommen (immer den mittleren Wert \"uber alle Werte der beiden Skalen), kann es dazu kommen, dass sich hierdurch an manchen Stellen extremere Werte aufgezeichnet werden, als wenn man nur die tats\"achlich existierenden Aminos\"auren an der jeweiligen Stelle vergleicht. Man muss dabei aber bedenken, dass gaps eine Folge von Mutationen sind und somit auch bei der Berechnung des Scores beachtet werden k\"onnen. Ob dies jedoch sinnvoll ist, bei der Berechnung der Scores und nicht bei der Mutationsz\"ahlung ist fraglich. 
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.75]{Images/Diagramm_Mutationen_im_Dengue_virus.png}
+  \caption{Mutationen im Dengue virus}
+  \label{fig:Dengue_virus_mutations}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.75]{Images/Diagramm_Polar_requirements_im_Dengue_virus.png}
+  \caption{Polar requirements im Dengue virus}
+  \label{fig:Dengue_virus_polar_requirements}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.75]{Images/Diagramm_Hydropathie_im_Dengue_virus.png}
+  \caption{Hydropathie im Dengue virus}
+  \label{fig:Dengue_virus_hydropathy}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.75]{Images/Diagramm_Scores_im_Dengue_virus.png}
+  \caption{Scores im Dengue virus}
+  \label{fig:Dengue_virus_scores}
+\end{figure}
 
 \begin{figure}[htpb]
   \centering
@@ -445,10 +477,21 @@ Bei der Berechnung der Scores schauen wir immer nach den Extremwerten, also dem 
 
 \begin{figure}[htpb]
   \centering
+  \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren_Bereiche_random.png}
+  \caption{Diagramm: Scores und Mutationen Dengue viren: automatische Auteilung der Sequenzen in 10 gleich gro\ss{}e Bereiche mit zuf\"alliger Permutation des Dengue viruses mit 1000 Vertauschungen}
+  \label{fig:Dengue_virus_scores_and_mutations_bereiche_random}
+\end{figure}
+
+\begin{figure}[htpb]
+  \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren_Namen.png}
   \caption{Diagramm: Scores und Mutationen Dengue viren: Auteilung nach Proteinen/ Bereichen}
   \label{fig:Dengue_virus_scores_and_mutations_namen}
 \end{figure}
+
+
+\chapter{Diskussion}
+
 
 \chapter{Zusammenfassung und Ausblick}
 % In a German thesis write: \subsection{Zusammenfassung und Ausblick}

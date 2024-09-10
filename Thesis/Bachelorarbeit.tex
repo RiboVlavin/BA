@@ -348,6 +348,7 @@
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 %
 % Replace with your own introduction:
+Fragestellung: Sind transmembrane Bereiche eines Proteins besonders Mutationsstabil \"uber polar requirements? Bzw. herscht dort ein gro\ss{}er Konservierungsdruck, sodass sich die polar requirements in diesen Bereichen st\"arker konservieren und es somit nur wenig \"Anderung geben darf? 
 
 
 \section{Beitr\"age dieser Arbeit}
@@ -393,24 +394,20 @@
 %
 % Replace the whole text chapter with the main text of your thesis! 
 
-\chapter{Theoretische Grundlagen}
-
 
 \chapter{Material und Methoden}%: Document Setup and Document Structure}
 \label{chapter-use}
 
-\section{Der Datensatz}
+\section{Dengue-Virus}
 Dengue-Virus: Abbildung \ref{fig:Dengue_virus_overview} \\
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=1]{Images/Dengue_virus_overview.jpg}
   \caption{\citetitle{perera_structural_2008} \cite{perera_structural_2008}}
   \label{fig:Dengue_virus_overview}
-\end{figure} \\
+\end{figure} 
 
-Dengue-Viren sind Arboviren, die haupts\"achlich durch Stechm\"ucken, insbesondere die Asiatische Tigerm\"ucke (Aedes albopictus), auf den Menschen \"ubertragen werden \cite{cramer_dengue-virus_2014}. Sie geh\"oren zu einer Gruppe von Erregern, die urspr\"unglich in den Tropen verbreitet waren, aber zunehmend auch in andere Regionen, einschlie\ss{}lich Europa, verschleppt werden \cite{cramer_dengue-virus_2014}. Dengue-Viren haben sich im Zuge der Globalisierung ausgebreitet und gelten als ``Gewinner der Globalisierung'' \cite{meyding-lamade_winners_2018}.
-Sie verursachen Dengue-Fieber und in schwereren F\"allen das H\"amorrhagische Dengue-Fieber, das als eine der t\"odlichen Pandemien des 20. Jahrhunderts bezeichnet wird \cite{kuhnle_dengue-fieber_1999}. Auch in Deutschland werden immer mehr Dengue-Fieber-F\"alle aufgezeichnet Abbildung \ref{fig:Dengue_virus_infektionszahlen_deutschland}. Dengue-Viren sind besonders geschickt darin, das menschliche Immunsystem zu \"uberlisten. Sie haben "`perfide Tricks"' entwickelt, um der Immunabwehr zu entgehen \cite{janisch_klein_2017}. In Deutschland wird eine Virus-Surveillance in Stechm\"ucken durchgef\"uhrt, um potenzielle Infektionsherde fr\"uhzeitig zu erkennen \cite{cramer_dengue-virus_2014}. Die zunehmende Verbreitung von Dengue-Viren und ihren Vektoren, insbesondere durch den internationalen Reise- und Warenverkehr, stellt eine wachsende Herausforderung f\"ur das Gesundheitswesen dar, auch in Regionen, die traditionell nicht als Risikogebiete galten \cite{cramer_dengue-virus_2014}. 
-
+Dengue-Viren sind Arboviren, die haupts\"achlich durch Stechm\"ucken, insbesondere die Asiatische Tigerm\"ucke (Aedes albopictus), auf den Menschen \"ubertragen werden \cite{cramer_dengue-virus_2014}. Sie geh\"oren zu einer Gruppe von Erregern, die urspr\"unglich in den Tropen verbreitet waren, aber zunehmend auch in andere Regionen, einschlie\ss{}lich Europa, verschleppt werden \cite{cramer_dengue-virus_2014}. Sie verursachen Dengue-Fieber und in schwereren F\"allen das H\"amorrhagische Dengue-Fieber, das als eine der t\"odlichen Pandemien des 20. Jahrhunderts bezeichnet wird \cite{kuhnle_dengue-fieber_1999}. Auch in Deutschland werden immer mehr Dengue-Fieber-F\"alle aufgezeichnet Abbildung \ref{fig:Dengue_virus_infektionszahlen_deutschland}. Dengue-Viren sind besonders geschickt darin, das menschliche Immunsystem zu \"uberlisten. Sie haben "`perfide Tricks"' entwickelt, um der Immunabwehr zu entgehen \cite{janisch_klein_2017}. Die zunehmende Verbreitung von Dengue-Viren und ihren Vektoren, insbesondere durch den internationalen Reise- und Warenverkehr, stellt eine wachsende Herausforderung f\"ur das Gesundheitswesen dar, auch in Regionen, die traditionell nicht als Risikogebiete galten \cite{cramer_dengue-virus_2014}. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.5]{Images/infektionszahlen_dengue_virus_deutschland.jpeg}
@@ -422,74 +419,97 @@ Es ist wichtig, die Mutationen der Virenfamilie zu untersuchen und Vorhersagen \
 Insgesamt erm\"oglicht die Untersuchung von Virusmutationen eine proaktive und gezielte Reaktion auf virale Bedrohungen, was entscheidend f\"ur den Schutz der \"offentlichen Gesundheit ist.
 
 \section{Hydropathie und polar requirements}
-Hyropathiewerte wurden nachtr\"aglich h\"andisch ver\"andert -> 4 Werte (3 davon leicht, 1 sehr viel)
-
 Hydropathie beschreibt die Affinit\"at eines Molek\"uls zu Wasser. Molek\"ule k\"onnen als hydrophil (wasserliebend) oder hydrophob (wasserabweisend) klassifiziert werden. Diese Eigenschaften beeinflussen, wie Molek\"ule in biologischen Systemen interagieren, insbesondere in Bezug auf Membranproteine und deren Funktion. Jedes Molek\"ul hat ein charakteristisches Hydropathie-Profil, das als eine Art "`Fingerabdruck"' f\"ur seine Struktur betrachtet werden kann. Diese Profile werden h\"aufig verwendet, um die Struktur und Funktion von Membranproteinen zu analysieren und um Beziehungen zwischen verschiedenen Transportproteinen zu identifizieren. In biologischen Systemen spielen hydrophobe und hydrophile Wechselwirkungen eine entscheidende Rolle bei der Faltung von Proteinen, der Bildung von Zellmembranen und der Funktion von Enzymen. Das Verst\"andnis dieser Eigenschaften hilft bei der Vorhersage, wie Molek\"ule in zellul\"aren Umgebungen interagieren. Hydropathie-Analysen werden in der Bioinformatik und Strukturbiologie eingesetzt, um die Topologie von Membranproteinen vorherzusagen und deren funktionelle Eigenschaften besser zu verstehen. Zusammenfassend ist die Hydropathie eine grundlegende chemische Eigenschaft, die entscheidend f\"ur das Verst\"andnis der Molek\"ulinteraktionen in biologischen Systemen ist. Da sie die grundlegenden Molek\"uleigenschaften des Proteins beschreibt. 
+Somit hat auch jede Aminos\"aure hat einen spezifischen Hydropathiewert. In dieser Abreit verwenden wir die Werte aus dem Paper \citetitle{kyte_simple_1982} \cite{kyte_simple_1982}. Die in der Abbildung \ref{fig:Hydropathieindexe} zu sehen sind. 
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.75]{Images/Hydropathy_scores_Paper.png}
+  \caption{Aminos\"auren mit zugeh\"origen Hydropathieindexen aus \citetitle{kyte_simple_1982} \cite{kyte_simple_1982}}
+  \label{fig:Hydropathieindexe}
+\end{figure}
+In dem Paper \citetitle{kyte_simple_1982} \cite{kyte_simple_1982} werden vier spezifische Werte des Hydropathie-Index manuell angepasst. Diese Anpassungen betreffen die Aminos\"auren Glycin, Alanin, Serin und Threonin. Die Gr\"unde f\"ur diese \"Anderungen sind, dass die Autoren die Hydropathie-Indexe dieser Aminos\"auren so modifizieren wollten, dass sie besser die experimentellen Beobachtungen und die biologischen Eigenschaften der Proteine widerspiegeln.
 
-Im chemischen Kontext beziehen sich "`polar requirements"' auf die spezifischen Eigenschaften und Bedingungen, die f\"ur polare Molek\"ule oder chemische Verbindungen erforderlich sind, um in einer bestimmten Umgebung stabil zu sein oder zu interagieren. Diese Anforderungen k\"onnen die Polarit\"at, L\"oslichkeit, Wechselwirkungen mit anderen Molek\"ulen und die F\"ahigkeit zur Bildung von Wasserstoffbr\"ucken umfassen. Molek\"ule mit polaren Gruppen (z. B. Hydroxyl- oder Carboxylgruppen) haben unterschiedliche Eigenschaften im Vergleich zu unpolaren Molek\"ulen. Die Polarit\"at beeinflusst, wie Molek\"ule in L\"osungsmitteln interagieren, insbesondere in w\"assrigen L\"osungen. Polare Molek\"ule sind in polaren L\"osungsmitteln wie Wasser besser l\"oslich. Die polar requirements helfen zu bestimmen, welche Molek\"ule in bestimmten chemischen Reaktionen oder biologischen Prozessen effektiv interagieren k\"onnen. Die polar requirements sind entscheidend f\"ur die Vorhersage von Wechselwirkungen zwischen Molek\"ulen, wie z. B. zwischen Enzymen und Substraten oder zwischen Rezeptoren und Liganden. In der Biochemie sind die polar requirements wichtig f\"ur das Verst\"andnis der Struktur und Funktion von Biomolek\"ulen, einschlie\ss{}lich Proteinen und Nukleins\"auren. Auch polar requirements sind entscheidend f\"ur das grundlegende Verst\"andnis der Molek\"uleigenschaften eines Proteins. Obwohl Hydropathie und polar requirements \"ahnliche Eigenschaften untersuchen, zeigt sich bei den Werten einige unterschiede. Da nicht alle Aminos\"auren einduetig zu klassifiezieren sind, wenn man nur eine der beiden Molek\"uleigenschaften verwendet und somit wertvolle Information \"uber die Struktur des Proteins verloren geht, verwenden wir beide Werte f\"ur die Auswertung. 
+Im chemischen Kontext beziehen sich "`polar requirements"' auf die spezifischen Eigenschaften und Bedingungen, die f\"ur polare Molek\"ule oder chemische Verbindungen erforderlich sind, um in einer bestimmten Umgebung stabil zu sein oder zu interagieren. Diese Anforderungen k\"onnen die Polarit\"at, L\"oslichkeit, Wechselwirkungen mit anderen Molek\"ulen und die F\"ahigkeit zur Bildung von Wasserstoffbr\"ucken umfassen. Molek\"ule mit polaren Gruppen (z. B. Hydroxyl- oder Carboxylgruppen) haben unterschiedliche Eigenschaften im Vergleich zu unpolaren Molek\"ulen. Die Polarit\"at beeinflusst, wie Molek\"ule in L\"osungsmitteln interagieren, insbesondere in w\"assrigen L\"osungen. Polare Molek\"ule sind in polaren L\"osungsmitteln wie Wasser besser l\"oslich. Die polar requirements helfen zu bestimmen, welche Molek\"ule in bestimmten chemischen Reaktionen oder biologischen Prozessen effektiv interagieren k\"onnen. Die polar requirements sind entscheidend f\"ur die Vorhersage von Wechselwirkungen zwischen Molek\"ulen, wie z. B. zwischen Enzymen und Substraten oder zwischen Rezeptoren und Liganden. In der Biochemie sind die polar requirements wichtig f\"ur das Verst\"andnis der Struktur und Funktion von Biomolek\"ulen, einschlie\ss{}lich Proteinen und Nukleins\"auren. Auch polar requirements sind entscheidend f\"ur das grundlegende Verst\"andnis der Molek\"uleigenschaften eines Proteins. 
+Aminos\"auren haben auch spezifische polar requirements Werte. In dieser Arbeit nutzen wir die Werte aus der Arbeit \citetitle{woese_fundamental_1966} \cite{woese_fundamental_1966}. Die in der Abbildung \ref{fig:Polar_requirements_indexe} zu sehen sind. 
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[scale=0.6]{Images/polar_requirements_scores_Paper.png}
+  \caption{Aminos\"auren mit zugeh\"origen Polar requirements Werten aus \citetitle{woese_fundamental_1966} \cite{woese_fundamental_1966}}
+  \label{fig:Polar_requirements_indexe}
+\end{figure}
+
+Obwohl Hydropathie und polar requirements \"ahnliche Eigenschaften untersuchen, zeigt sich bei den Werten einige unterschiede. Da nicht alle Aminos\"auren einduetig zu klassifiezieren sind, wenn man nur eine der beiden Molek\"uleigenschaften verwendet und somit wertvolle Information \"uber die Struktur des Proteins verloren geht, verwenden wir beide Werte f\"ur die Berechnung. 
 
 \section{Biopython}
 
 \section{T-Coffee}
-T-Coffee (Tree-based Consistency Objective Function for Alignment Evaluation) is a multiple sequence alignment tool widely used in bioinformatics for aligning DNA, RNA, and protein sequences. T-Coffee works by employing an alignment strategy combined with a consistency-based scoring function. The algorithm for T-Coffee is primarily described in the original publication \citetitle{poirot_tcoffeeigs_2003} \cite{poirot_tcoffeeigs_2003}. The algorithm has the following main steps. T-Coffee first generates all possible pairwise alignments between the input sequences using global and local alignment methods. It then builds a primary library of alignment information from these pairwise alignments, assigning weights to each aligned residue pair based on their consistency across different alignments. The primary library is extended by incorporating transitive alignments, which helps in capturing indirect relationships between sequences. Using the extended library, T-Coffee constructs a guide tree and performs a progressive alignment, aligning the most similar sequences first and gradually adding more distant sequences. The initial alignment is iteratively refined to improve its overall quality and consistency.
-T-Coffee is known for its high accuracy, especially when dealing with short sequences. It has been benchmarked against other alignment tools and has shown to produce alignments with accuracy comparable to or better than other methods like MUSCLE \cite{Edgar2004MUSCLEL}.
+T-Coffee (Tree-based Consistency Objective Function for Alignment Evaluation) ist ein in der Bioinformatik weit verbreitetes Werkzeug zur Ausrichtung von DNA-, RNA- und Proteinsequenzen. T-Coffee arbeitet mit einer Ausrichtungsstrategie in Kombination mit einer konsistenzbasierten Bewertungsfunktion. Der Algorithmus f\"ur T-Coffee wird haupts\"achlich in der Originalver\"offentlichung \citetitle{poirot_tcoffeeigs_2003} \cite{poirot_tcoffeeigs_2003} beschrieben. Der Algorithmus hat die folgenden Hauptschritte. Zun\"achst generiert T-Coffee alle m\"oglichen paarweisen Ausrichtungen zwischen den Eingabesequenzen unter Verwendung globaler und lokaler Ausrichtungsmethoden. Anschlie\ss{}end erstellt es eine prim\"are Bibliothek mit Ausrichtungsinformationen aus diesen paarweisen Ausrichtungen und weist jedem ausgerichteten Residuenpaar basierend auf seiner Konsistenz \"uber verschiedene Ausrichtungen hinweg Gewichte zu. Die prim\"are Bibliothek wird durch Einbeziehung transitiver Ausrichtungen erweitert, was hilft, indirekte Beziehungen zwischen Sequenzen zu erfassen. Unter Verwendung der erweiterten Bibliothek konstruiert T-Coffee einen F\"uhrungsbaum und f\"uhrt eine progressive Ausrichtung durch, wobei zun\"achst die \"ahnlichsten Sequenzen ausgerichtet und dann nach und nach entferntere Sequenzen hinzugef\"ugt werden. Die anf\"angliche Ausrichtung wird iterativ verfeinert, um ihre Gesamtqualit\"at und -konsistenz zu verbessern.
+T-Coffee zeichnet sich durch seine hohe Genauigkeit aus, insbesondere bei der Bearbeitung kurzer Sequenzen. Es wurde mit anderen Ausrichtungswerkzeugen verglichen und hat gezeigt, dass es Ausrichtungen mit einer Genauigkeit produziert, die mit anderen Methoden wie MUSCLE \cite{Edgar2004MUSCLEL} vergleichbar oder besser ist.
 
+\section{Berechnungsgrundlagen}
+In den folgenden Diagrammen schauen wir uns das Polyprotein des Dengue-Virus an und teilen daf\"ur das Protein in 20 gleich gro\ss{}e Abschnitte auf, f\"ur die wir die Berechnungen jeweils durchf\"uhren und die einzelnen Ergebnisse, dann in einer Grafik gemeinsam darstellen. Die Serotypen wurden hierf\"ur zuerst mit T-Coffee aligned. Dadurch waren alle Sequenzen gleich lang und konnten somit in gleich gro\ss{}e Bereiche aufgeteilt werden. Im folgenden ist von einzelnen Stellen der Sequenzen die Rede, dabei ist gemeint, dass man sich in dem Alignment an einer Stelle alle Sequenzen anschaut. 
 
-\chapter{Ergebnisse}
-Um die Mutationen zu z\"ahlen nutzen wir aktuell einen sehr naiven Ansatz, indem wir f\"ur alle Sequenzen nur schauen, ob an einer Stelle alle Aminos\"auren gleich sind oder ob es mindestens eine Sequenz gibt, in der es eine andere Aminos\"aure an der Stelle gibt. Wir z\"ahlen nicht, wie viele verschiedene Aminos\"auren es an der Stelle gibt. Wenn wir also eine Mutation z\"ahlen, meine wir, dass an der jeweiligen Stelle mindestens eine Sequenz eine andere Aminos\"aure aufweist, als die Aminos\"aure in der ersten Sequenz. Wir berechen die Anzahl an Mutationen und zeigen diese dann anteilig f\"ur die L\"ange der jeweiligen Sequenz an. Wir berechnen also, verh\"altnism\"a\ss{}ig, an wie vielen Stellen die Sequenz mutiert ist.
-
-Bei der Berechnung der Scores schauen wir immer nach den Extremwerten, also dem minimalen Wert und dem maximalen Wert, die die Aminos\"auren bei den polar requirements, bzw. bei der Hydropathie erreichen. Da auch gaps einen Wert vergeben bekommen (immer den mittleren Wert \"uber alle Werte der beiden Skalen), kann es dazu kommen, dass sich hierdurch an manchen Stellen extremere Werte aufgezeichnet werden, als wenn man nur die tats\"achlich existierenden Aminos\"auren an der jeweiligen Stelle vergleicht. Man muss dabei aber bedenken, dass gaps eine Folge von Mutationen sind und somit auch bei der Berechnung des Scores beachtet werden k\"onnen. Ob dies jedoch sinnvoll ist, bei der Berechnung der Scores und nicht bei der Mutationsz\"ahlung ist fraglich. 
-
+Um die Mutationen zu z\"ahlen, schauen wir f\"ur alle Sequenzen, an einer Stelle, ob alle Aminos\"auren gleich sind oder ob es mindestens eine Sequenz gibt, in der es eine andere Aminos\"aure an dieser Stelle gibt. Wenn ein Gap an der Stelle existiert, wird das auch als Mutation gez\"ahlt. Wir gehen dabei \"uber die gesamte L\"ange der Sequenzen und z\"ahlen alle Stellen, an der wir mindestens zwei verschiedene Aminos\"auren oder ein Gap vorfinden. Wir z\"ahlen expliziet nicht, wie viele verschiedene Aminos\"auren es an dieser Stelle gibt. Wenn wir also eine Mutation z\"ahlen, meinen wir, dass an der jeweiligen Stelle mindestens eine Sequenz eine andere Aminos\"aure aufweist, als die Aminos\"aure in der ersten Sequenz oder ein Gap an dieser Stelle besitzt. In den folgenden Grafiken, nutzen wir au\ss{}erdem nur den Anteil an Mutationen \"uber einen Sequenzteil. Wir berechen die Anzahl an Mutationen daf\"ur anteilig f\"ur die L\"ange der jeweiligen Sequenz. Wir berechnen also, verh\"altnism\"a\ss{}ig, an wie vielen Stellen die Sequenz mutiert ist. F\"ur das Polyprotein des Dengue-Virus ergibt sich dadurch die Abbildung \ref{fig:Dengue_virus_mutations}. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Mutationen_im_Dengue_virus.png}
-  \caption{Mutationen im Dengue virus}
+  \caption{Mutationen im Dengue-Virus}
   \label{fig:Dengue_virus_mutations}
 \end{figure}
 
+Im n\"achsten Schritt wird f\"ur jede Stelle der Sequenzen der minimale und der maximale Wert ausgerechnet, den die Aminos\"auren in Bezug auf polar requirements zugeordnet bekommen. Wir nutzen hierf\"ur die Werte aus der Abbildung \ref{fig:Polar_requirements_indexe} als Grundlage, um den Aminos\"auren Werte zuzuordnen. Wir normieren die Werte vor den weiteren Berechnungsschritten noch auf einen Wertebereich zwischen $0$ und $1$. Gaps haben keine zugeordneten Werte und werden somit bei der Berechnung der polar requirements nicht beachtet. Wir berechnen nun die Differenz zwischen dem maximalen und minimalen Wert an der jeweiligen Stelle. Da wir die Werte voher normiert haben, ist die maximale Differenz zwischen den Aminos\"auren 1 und die minimale 0. Insgesamt berechnen wir f\"ur jede Stelle einer Teilsequenz diese Differenzen und addieren sie auf, damit wir f\"ur eine Teilsequenz dann, mithilfe der L\"ange der Teilsequenz, den Durschnitt der Differenzen berechnen k\"onnen. Der polar requirements Wert f\"ur eine Teilsequenz ist somit die durchschnittliche Differenz des maximalen und minimalen normierten Wertes an jeder Stelle der Teilsequenz. F\"ur das Polyprotein des Dengue-Virus ergibt sich dadurch folgende Abbildung \ref{fig:Dengue_virus_polar_requirements}. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Polar_requirements_im_Dengue_virus.png}
-  \caption{Polar requirements im Dengue virus}
+  \caption{Polar requirements im Dengue-Virus}
   \label{fig:Dengue_virus_polar_requirements}
 \end{figure}
 
+F\"ur Hydropathie berechnen wir die Werte gleicherma\ss{}en. Wir nutzen daf\"ur die Werte aus der Abbildung \ref{fig:Hydropathieindexe} und berechnen die Werte auf die selbe Weise, wie bei den polar requirements. Gaps werden hier auch wieder nicht ber\"ucksichtigt. Wir berechnen also die durchschnittliche Differenz des maximalen und minimalen normierten Wertes an jeder Stelle der Teilsequenz. F\"ur das Polyprotein des Dengue-Virus ergibt sich dadurch folgende Abbildung \ref{fig:Dengue_virus_hydropathy}. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Hydropathie_im_Dengue_virus.png}
-  \caption{Hydropathie im Dengue virus}
+  \caption{Hydropathie im Dengue-Virus}
   \label{fig:Dengue_virus_hydropathy}
 \end{figure}
 
+Um einen gemeinsamen Score zu bilden, werden nun die Werte f\"ur polar requirements und Hydropathie f\"ur eine Teilsequenz gemittelt. Der Score ist also der Durchschnitt \"uber die durchschnittlichen Differenzen des maximalen und minimalen Wertes f\"ur Hydropathie und polar requirements an jeder Stelle der Teilsequenz. F\"ur das Polyprotein des Dengue-Virus ergibt sich dadurch folgende Abbildung \ref{fig:Dengue_virus_scores}. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Scores_im_Dengue_virus.png}
-  \caption{Scores im Dengue virus}
+  \caption{Scores im Dengue-Virus}
   \label{fig:Dengue_virus_scores}
 \end{figure}
 
+Die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche} kombiniert den gemeinsamen Score und den Anteil an Mutationen in einem Diagramm. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren_Bereiche.png}
-  \caption{Diagramm: Scores und Mutationen Dengue viren: automatische Auteilung der Sequenzen in 10 gleich gro\ss{}e Bereiche}
+  \caption{Diagramm: Scores und Mutationen Dengue-Viren: automatische Auteilung der Sequenzen in 20 gleich gro\ss{}e Bereiche}
   \label{fig:Dengue_virus_scores_and_mutations_bereiche}
 \end{figure}
 
+Die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche_random} folgt den gleichen Berechnungen, wie die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche}. F\"ur diese Abbildung nutzen wir jedoch nicht das Polyprotein des Dengue-Virus in normaler Form, sondern ver\"andern die Sequenzen, bevor wir die Scores und Mutationen berechnen. Wir erstellen eine zuf\"allige Permutation des Dengue-Viruses, indem wir eine Stellen des Alignments aller Serotypen zuf\"allig ausw\"ahlen und mit einer anderen zuf\"alligen Stelle vertauschen. Das Alignment bleibt also prinzipiell erhalten und es werden nur einzelne Stelle des Alignments an eine andere Position im Alignment vertauscht. F\"ur die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche_random} wurden 1000 zuf\"allige Vertauschungen nacheinander durchgef\"uhrt. Es kann also auch eine Stelle mehrfach vertauscht werden. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren_Bereiche_random.png}
-  \caption{Diagramm: Scores und Mutationen Dengue viren: automatische Auteilung der Sequenzen in 10 gleich gro\ss{}e Bereiche mit zuf\"alliger Permutation des Dengue viruses mit 1000 Vertauschungen}
+  \caption{Diagramm: Scores und Mutationen Dengue-Viren: automatische Auteilung der Sequenzen in 20 gleich gro\ss{}e Bereiche mit zuf\"alliger Permutation des Dengue-Viruses mit 1000 Vertauschungen}
   \label{fig:Dengue_virus_scores_and_mutations_bereiche_random}
 \end{figure}
 
+Die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_namen} benutzt auch die gleichen Berechnungen, wie die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche}. Hierbei wurden jedoch die Sequenzteile f\"ur die Berechnung ver\"andert. W\"ahrend bei den bisherigen Abbildungen gleich gro\ss{}e Bereiche ausgew\"ahlt werden, werden in dieser Abbildung verschieden gro\ss{}e Bereiche berechnet. Wir betrachten jedes Protein des Polyproteins einzelnd und berechnen f\"ur jedes Protein einen Score und den Anteil an Mutationen. Daf\"ur suchen wir erst die betreffenden Regionen im Polyprotein f\"ur jeden Serotypen und erstellen dann ein Alignment, mithilfe von T-Coffee, expliziet f\"ur diese Region, um dann basierend auf diesem Alignment einen Score und den Anteil an Mutationen zu berechnen. Da die Proteine nicht alle die gleiche L\"ange haben, sind die betrachteten Bereiche nun unterschiedlich gro\ss{}. Da jedoch beide berechneten Werte anteilig in Bezug auf die L\"ange berechnet werden, bleiben die Werte vergleichbar miteinander. 
 \begin{figure}[htpb]
   \centering
   \includegraphics[scale=0.75]{Images/Diagramm_Scores_und_Mutationen_Dengue_viren_Namen.png}
-  \caption{Diagramm: Scores und Mutationen Dengue viren: Auteilung nach Proteinen/ Bereichen}
+  \caption{Diagramm: Scores und Mutationen Dengue-Viren: Auteilung nach Proteinen/ Bereichen}
   \label{fig:Dengue_virus_scores_and_mutations_namen}
 \end{figure}
 
+\chapter{Ergebnisse}
+In der Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche} sind starke Abweichungen von den durchschnittlichen Werte f\"ur den Score und den Anteil an Mutationen zu erkennen. Insbesondere bei den Abschnitten $1189-1358$ und $1698-1868$ ist ein Maximum beziehungweise ein Minimum zu erkennen. Um zu sch\"atzen, ob diese Extrema signifikant sind und nicht nur zuf\"alligen Schwankungen unterliegen, schauen wir uns die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche_random} an. Hier wurde die Sequenz zuf\"allig permutiert. Wenn die Extrema zuf\"allige Schwankungen sind, k\"onnen wir annehmen, dass wenn wir die Sequenz zuf\"allig stellenweise vertauschen, dass dann Extrema weiterhin im selben Ausma\ss{} oder verst\"arkt vorkommen. Wenn die Extrema nicht auf Zufall basieren, sollten die Extrema in der zuf\"allig permutierten Sequenz abgeschw\"acht vorkommen. Die Werte sollten sich also dem Durchschnitt ann\"ahern, da die starken H\"aufungen von Mutationen oder die starken regionalen Ver\"anderungen im Score abgeschw\"acht wurden, indem einzelne Stellen aus diesem Bereich mit Stellen aus anderen Bereichen der Sequenz, in den weniger Mutationen oder gro\ss{}e Differenzen im Score zu finden sind vertauscht wurden. Da die Vertauschungen jedoch zuf\"allig ausgef\"uhrt wurden, existiert kein Bias dar\"uber, welche Stellen ausgew\"ahlt und vertauscht wurden. Sollten die Extrema also zuf\"allig entstanden sein, sollten sich nun an einigen Stelle in der Sequenz wieder geh\"auft Mutationen finden lassen oder starke Ver\"anderungen im Score bestehen. 
+Zu erkennen in der Abbilung \ref{fig:Dengue_virus_scores_and_mutations_bereiche_random} ist, dass der Bereich \"uber den sich die Werte erstrecken verkleinert ist, im vergleich zur Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche}. Bei der Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche_random} sind f\"ur die Scores Werte im Bereich von circa $0,0582$ bis $0,2299$ zu erkennen und f\"ur den Anteil an Mutationen Werte im Bereich von circa $0,2176$ bis $0,7811$. Bei der Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche} sind f\"ur den Score Werte im Bereich von circa $0,0826$ bis $0,1778$ zu erkennen und f\"ur den Anteil an Mutationen Werte im Bereich von circa $0,3195$ bis $0,6036$. Die Extrema sind also abgeschw\"acht, wodurch anzunehmen ist, dass die Extrema nicht nur zuf\"allig entstanden sind. Deshalb nehmen wir an, dass die Ergebnisse auch signifikant sind, da die Werte nicht nur zuf\"alligen Schwankungen unterliegen.  
 
+Um die Fragestellung zu beantworten betrachten wir die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_namen}. Hierbei f\"allt direkt auf, dass die Proteine $NS2A$, $NS3$ und $NS4B$ besonders extreme Werte aufweisen, sowohl bei dem Score als auch bei dem Anteil an Mutationen. Das Protein $NS2A$ hat dabei besonders hohe Werte, weshalb davon auszugehen ist, dass kein besonders starker Konservierungsdruck in diesem Protein vorhanden sein kann, sondern das Protein eher einem gro\ss{}en Mutationsdruck unterliegt und besonders h\"aufig mutiert. Die Proteine $NS3$ und $NS4B$ weisen hingegen besonders niedrige Werte auf, sodass von einem starken Konservierungsdruck und einem sehr niedrigem Mutationsdruck innerhalb der Proteine ausgegangen werden kann. 
 \chapter{Diskussion}
 
 
@@ -713,6 +733,35 @@ Ruperto Carola, Nr. 11 (2017): Schein \& Sein},
 	month = jan,
 	year = {1999},
 	pages = {48--50},
+}
+
+@article{kyte_simple_1982,
+	title = {A simple method for displaying the hydropathic character of a protein},
+	volume = {157},
+	issn = {0022-2836},
+	url = {https://www.sciencedirect.com/science/article/pii/0022283682905150},
+	doi = {10.1016/0022-2836(82)90515-0},
+	number = {1},
+	urldate = {2024-09-09},
+	journal = {Journal of Molecular Biology},
+	author = {Kyte, Jack and Doolittle, Russell F.},
+	month = may,
+	year = {1982},
+	pages = {105--132},
+}
+
+@article{woese_fundamental_1966,
+	title = {On the fundamental nature and evolution of the genetic code},
+	volume = {31},
+	issn = {0091-7451},
+	doi = {10.1101/sqb.1966.031.01.093},
+	language = {eng},
+	journal = {Cold Spring Harbor Symposia on Quantitative Biology},
+	author = {Woese, C. R. and Dugre, D. H. and Dugre, S. A. and Kondo, M. and Saxinger, W. C.},
+	year = {1966},
+	pmid = {5237212},
+	keywords = {Amino Acids, Biological Evolution, Chemical Phenomena, Chemistry, Genetic Code, Models, Biological, Ribosomes, RNA, Transfer},
+	pages = {723--736},
 }
 
 

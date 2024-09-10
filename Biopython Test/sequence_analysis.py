@@ -129,10 +129,11 @@ def calculate_cumulative_polar_requirements_difference(sequences):
         min_polar_requirements_score = 1
         max_polar_requirements_score = 0
         for sequence in sequences:
-            if get_normalized_polar_requirements(sequence[i]) < min_polar_requirements_score:
-                min_polar_requirements_score = get_normalized_polar_requirements(sequence[i])
-            if get_normalized_polar_requirements(sequence[i]) > max_polar_requirements_score:
-                max_polar_requirements_score = get_normalized_polar_requirements(sequence[i])
+            if sequence[i] != '-':
+                if get_normalized_polar_requirements(sequence[i]) < min_polar_requirements_score:
+                    min_polar_requirements_score = get_normalized_polar_requirements(sequence[i])
+                if get_normalized_polar_requirements(sequence[i]) > max_polar_requirements_score:
+                    max_polar_requirements_score = get_normalized_polar_requirements(sequence[i])
         cumulative_polar_requirements_difference += max_polar_requirements_score - min_polar_requirements_score
     return cumulative_polar_requirements_difference
 
@@ -148,10 +149,11 @@ def calculate_cumulative_hydropathy_difference(sequences):
         min_hydropathy_score = 1
         max_hydropathy_score = 0
         for sequence in sequences:
-            if get_normalized_hydropathy(sequence[i]) < min_hydropathy_score:
-                min_hydropathy_score = get_normalized_hydropathy(sequence[i])
-            if get_normalized_hydropathy(sequence[i]) > max_hydropathy_score:
-                max_hydropathy_score = get_normalized_hydropathy(sequence[i])
+            if sequence[i] != '-':
+                if get_normalized_hydropathy(sequence[i]) < min_hydropathy_score:
+                    min_hydropathy_score = get_normalized_hydropathy(sequence[i])
+                if get_normalized_hydropathy(sequence[i]) > max_hydropathy_score:
+                    max_hydropathy_score = get_normalized_hydropathy(sequence[i])
         cumulative_hydropathy_difference += max_hydropathy_score - min_hydropathy_score
     return cumulative_hydropathy_difference
 
@@ -295,145 +297,6 @@ def random_sequence_permutation(dataset_name, dataset_type, number_of_swaps, out
             file.write(f">{header}\n{seq}\n")
 
 
-# ab hier verarbeiten wir einmal den dengue_virus Datensatz mit dem naiven automatisierten Sequenzteilen und einer
-# Anzahl von 10 Seuqenzteilen
-# wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
-"""
-outer_scope_amount_of_sequences = 20
-outer_scope_sequence_length = calculate_sequence_length("random_aligned_polyprotein_dengue_virus.fasta")
-result_automatic_sequence_sections = automatic_sequence_sections(outer_scope_sequence_length, outer_scope_amount_of_sequences)
-scores_and_mutations = calculate_scores_and_mutations("random_aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
-
-# plot erstellen mit den Scores der Sequenzteile
-categories = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
-plt.bar(categories, scores_and_mutations[0])
-plt.xlabel('Abschnitte als Indizes')
-plt.ylabel('Score')
-plt.title('Balkendiagramm: Scores')
-# x-Achsenbeschriftungen drehen
-plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
-# Mehr Platz für die x-Achsenbeschriftungen schaffen
-plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
-plt.show()
-
-# plot erstellen mit den Anzahl an Muationen
-categories = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
-plt.bar(categories, scores_and_mutations[1])
-plt.xlabel('Abschnitte als Indizes')
-plt.ylabel('Anteil an Mutationen')
-plt.title('Balkendiagramm: Mutationen')
-# x-Achsenbeschriftungen drehen
-plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
-# Mehr Platz für die x-Achsenbeschriftungen schaffen
-plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
-plt.show()
-
-# plot erstellen mit Scores und Mutationen
-# Beispieldaten erstellen
-x = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
-y1 = scores_and_mutations[0]
-y2 = scores_and_mutations[1]
-# Durchschnittswerte berechnen
-mean_y1 = np.mean(y1)
-mean_y2 = np.mean(y2)
-# Diagramm erstellen
-fig, ax1 = plt.subplots()
-# Erste y-Achse plotten
-color = 'tab:red'
-ax1.set_xlabel('Abschnitte als Indizes')
-ax1.set_ylabel('Score', color=color)
-ax1.plot(x, y1, color=color)
-ax1.tick_params(axis='y', labelcolor=color)
-# Durchschnittslinie für die erste y-Achse
-ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschnitt Score')
-# Zweite y-Achse erstellen
-ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
-# Zweite y-Achse plotten
-color = 'tab:blue'
-ax2.set_ylabel('Anteil an Mutationen', color=color)
-ax2.plot(x, y2, color=color)
-ax2.tick_params(axis='y', labelcolor=color)
-# Durchschnittslinie für die zweite y-Achse
-ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationen')
-# Legende hinzufügen
-ax1.legend(loc='upper left')
-ax2.legend(loc='upper right')
-# x-Achsenbeschriftungen drehen
-ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
-ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
-# Mehr Platz für die x-Achsenbeschriftungen schaffen
-plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
-# Titel und Gitternetz hinzufügen
-fig.suptitle('Diagramm mit Scores und Mutationen')
-plt.show()
-
-
-# ab hier wird der Ordner aligned_dengue_virus ausgewertet
-# wir printen zwei Diagramme (Balkendiagramme) und ein kombiniertes Diagram mit beiden y-Werten
-outer_scope_file_names, outer_scope_score_per_file, outer_scope_mutations_per_file = generate_output_with_a_folder("aligned_dengue_virus")
-
-# plot erstellen mit den Scores der Sequenzteile
-plt.bar(outer_scope_file_names, outer_scope_score_per_file)
-plt.xlabel('Namen der Regionen/ Proteine')
-plt.ylabel('Score')
-plt.title('Balkendiagramm: Scores')
-# x-Achsenbeschriftungen drehen
-plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
-# Mehr Platz für die x-Achsenbeschriftungen schaffen
-plt.subplots_adjust(bottom=0.5)  # Mehr Platz unten hinzufügen
-plt.show()
-
-# plot erstellen mit den Anzahl an Muationen
-plt.bar(outer_scope_file_names, outer_scope_mutations_per_file)
-plt.xlabel('Namen der Regionen/ Proteine')
-plt.ylabel('Anteil an Mutationen')
-plt.title('Balkendiagramm: Mutationen')
-# x-Achsenbeschriftungen drehen
-plt.xticks(rotation=45, ha='right')  # Schrift um 45 Grad drehen, horizontal ausrichten
-# Mehr Platz für die x-Achsenbeschriftungen schaffen
-plt.subplots_adjust(bottom=0.5)  # Mehr Platz unten hinzufügen
-plt.show()
-
-# plot erstellen mit Scores und Mutationen
-# Beispieldaten erstellen
-x = outer_scope_file_names
-y1 = outer_scope_score_per_file
-y2 = outer_scope_mutations_per_file
-# Durchschnittswerte berechnen
-mean_y1 = np.mean(y1)
-mean_y2 = np.mean(y2)
-# Diagramm erstellen
-fig, ax1 = plt.subplots()
-# Erste y-Achse plotten
-color = 'tab:red'
-ax1.set_xlabel('Namen der Regionen/ Proteine')
-ax1.set_ylabel('Score', color=color)
-ax1.plot(x, y1, color=color)
-ax1.tick_params(axis='y', labelcolor=color)
-# Durchschnittslinie für die erste y-Achse
-ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschnitt Score')
-# Zweite y-Achse erstellen
-ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
-# Zweite y-Achse plotten
-color = 'tab:blue'
-ax2.set_ylabel('Anteil an Mutationen', color=color)
-ax2.plot(x, y2, color=color)
-ax2.tick_params(axis='y', labelcolor=color)
-# Durchschnittslinie für die zweite y-Achse
-ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationen')
-# Legende hinzufügen
-ax1.legend(loc='upper left')
-ax2.legend(loc='upper right')
-# x-Achsenbeschriftungen drehen
-ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
-ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
-# Mehr Platz für die x-Achsenbeschriftungen schaffen
-plt.subplots_adjust(bottom=0.5)  # Mehr Platz unten hinzufügen
-# Titel und Gitternetz hinzufügen
-fig.suptitle('Diagramm mit Scores und Mutationen')
-plt.show()
-"""
-
 # hier sind die plots, die wir verwenden
 
 # Berechnungen für naiven Ansatz
@@ -444,7 +307,24 @@ outer_scope_polar_requirements_scores = calculate_polar_requirements_scores("ali
 outer_scope_hydropathy_scores = calculate_hydropathy_scores("aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
 outer_scope_combined_scores = calculate_combined_scores("aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
 outer_scope_mutations = calculate_mutations("aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
-
+print("aligned_polyprotein_dengue_virus:")
+print(result_automatic_sequence_sections)
+print(outer_scope_combined_scores)
+print(outer_scope_mutations)
+print("combined_scores:")
+max_value = max(outer_scope_combined_scores)
+max_index = outer_scope_combined_scores.index(max_value)
+min_value = min(outer_scope_combined_scores)
+min_index = outer_scope_combined_scores.index(min_value)
+print(f"Maximum value: {max_value} (index: {max_index})")
+print(f"Minimum value: {min_value} (index: {min_index})")
+print("mutations:")
+max_value = max(outer_scope_mutations)
+max_index = outer_scope_mutations.index(max_value)
+min_value = min(outer_scope_mutations)
+min_index = outer_scope_mutations.index(min_value)
+print(f"Maximum value: {max_value} (index: {max_index})")
+print(f"Minimum value: {min_value} (index: {min_index})")
 # Mutationen über Sequenzen (naiver Ansatz)
 x = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
 y = outer_scope_mutations
@@ -555,13 +435,30 @@ plt.show()
 
 # plots mit random Sequenzverteilung und 20 Abschnitten (kombinierte Graphik mit Scores und Mutations; naiver Ansatz)
 outer_scope_number_of_swaps = 1000
-random_sequence_permutation("aligned_polyprotein_dengue_virus.fasta", "fasta", outer_scope_number_of_swaps, "random_aligned_polyprotein_dengue_virus.fasta")
+#random_sequence_permutation("aligned_polyprotein_dengue_virus.fasta", "fasta", outer_scope_number_of_swaps, "random_aligned_polyprotein_dengue_virus.fasta")
 outer_scope_amount_of_sequences = 20
 outer_scope_sequence_length = calculate_sequence_length("random_aligned_polyprotein_dengue_virus.fasta")
 result_automatic_sequence_sections = automatic_sequence_sections(outer_scope_sequence_length, outer_scope_amount_of_sequences)
 outer_scope_combined_scores = calculate_combined_scores("random_aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
 outer_scope_mutations = calculate_mutations("random_aligned_polyprotein_dengue_virus.fasta", "fasta", result_automatic_sequence_sections)
-
+print("random_aligned_polyprotein_dengue_virus:")
+print(result_automatic_sequence_sections)
+print(outer_scope_combined_scores)
+print(outer_scope_mutations)
+print("combined_scores:")
+max_value = max(outer_scope_combined_scores)
+max_index = outer_scope_combined_scores.index(max_value)
+min_value = min(outer_scope_combined_scores)
+min_index = outer_scope_combined_scores.index(min_value)
+print(f"Maximum value: {max_value} (index: {max_index})")
+print(f"Minimum value: {min_value} (index: {min_index})")
+print("mutations:")
+max_value = max(outer_scope_mutations)
+max_index = outer_scope_mutations.index(max_value)
+min_value = min(outer_scope_mutations)
+min_index = outer_scope_mutations.index(min_value)
+print(f"Maximum value: {max_value} (index: {max_index})")
+print(f"Minimum value: {min_value} (index: {min_index})")
 # plot erstellen mit Scores und Mutationen
 # Beispieldaten erstellen
 x = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]

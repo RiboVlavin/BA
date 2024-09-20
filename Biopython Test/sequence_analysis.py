@@ -50,8 +50,8 @@ def get_normalized_hydropathy(aminoacid):
 extreme_value_polar_requirements = 8.95 # Mittelwert der restlichen Scores
 polar_requirements_scores = {
     "A":  7.0,  # A: alanine
-    "B": 11.5,  # B: easpartate (aspartic acid)/asparagine -> Achtung: hier wurde der Mittelwert zwischen den biden Säuren verwendet
-    "C": 11.5,  # C: cystine
+    "B": 11.5,  # B: aspartate (aspartic acid)/asparagine -> Achtung: hier wurde der Mittelwert zwischen den biden Säuren verwendet
+    "C":  5.5,  # C: cystine
     "D": 13.0,  # D: aspartate (aspartic acid)
     "E": 12.5,  # E: glutamate (glutamic acid)
     "F":  5.0,  # F: phenylalanine
@@ -71,7 +71,7 @@ polar_requirements_scores = {
     "V":  5.6,  # V: valine
     "W":  5.3,  # W: tryptophan
     "Y":  5.7,  # Y: tyrosine
-    "Z": 10.55,  # Z: glutamate (glutamic acid)/glutamine-> Achtung: hier wurde der Mittelwert zwischen den beiden Säuren verwendet
+    "Z":10.55,  # Z: glutamate (glutamic acid)/glutamine-> Achtung: hier wurde der Mittelwert zwischen den beiden Säuren verwendet
     "X":    extreme_value_polar_requirements,  # X: any
     "*":    extreme_value_polar_requirements,  # *: translation stop
     "-":    extreme_value_polar_requirements,  # -: gap of indeterminate length
@@ -434,7 +434,7 @@ plt.show()
 
 
 # plots mit random Sequenzverteilung und 20 Abschnitten (kombinierte Graphik mit Scores und Mutations; naiver Ansatz)
-outer_scope_number_of_swaps = 1000
+outer_scope_number_of_swaps = 10000
 #random_sequence_permutation("aligned_polyprotein_dengue_virus.fasta", "fasta", outer_scope_number_of_swaps, "random_aligned_polyprotein_dengue_virus.fasta")
 outer_scope_amount_of_sequences = 20
 outer_scope_sequence_length = calculate_sequence_length("random_aligned_polyprotein_dengue_virus.fasta")

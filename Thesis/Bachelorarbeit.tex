@@ -406,6 +406,23 @@ Die Polar-requirements Werte, wie sie von \citeauthor{woese_fundamental_1966} ei
 Obwohl Hydropathie und Polar-requirements \"ahnliche Eigenschaften untersuchen, zeigt sich bei den Werten einige Unterschiede. Da nicht alle Aminos\"auren einduetig zu klassifiezieren sind, wenn man nur eine der beiden Molek\"uleigenschaften verwendet und somit wertvolle Information \"uber die Struktur des Proteins verloren geht. Aus diesem Grund verwenden wir beide Werte f\"ur die Berechnung. 
 
 \section{(Bio-)informatische Grundlagen}
+
+\begin{tikzpicture}[node distance=2cm]
+\node (start) [rectangle, rounded corners, draw] {Datenerfassung};
+\node (prep) [rectangle, rounded corners, draw, below of=start] {Datenvorverarbeitung};
+\node (calc) [rectangle, rounded corners, draw, below of=prep] {Berechnung der Werte};
+\node (anal) [rectangle, rounded corners, draw, below of=calc] {Statistische Analyse};
+\node (vis) [rectangle, rounded corners, draw, below of=anal] {Visualisierung};
+\node (interp) [rectangle, rounded corners, draw, below of=vis] {Interpretation};
+
+\draw[->] (start) -- (prep);
+\draw[->] (prep) -- (calc);
+\draw[->] (calc) -- (anal);
+\draw[->] (anal) -- (vis);
+\draw[->] (vis) -- (interp);
+\end{tikzpicture}
+
+
 \subsection{Verwendete Software}
 In dieser Arbeit wurde Python~\cite{python} als Programmiersprache verwendet, um die Daten zu analysieren und die Ergebnisse zu generieren. Python bietet eine Vielzahl von Bibliotheken wie NumPy~\cite{numpy} und Matplotlib~\cite{matplotlib}, die speziell f\"ur die Datenanalyse und Visualisierung entwickelt wurden. Zus\"atzlich wurden Funktionen aus den Biopython-Modulen~\cite{cock2009biopython} SeqIO und SeqRecord, sowie Path aus pathlib~\cite{pathlib} verwendet. Diese Tools erm\"oglichen es, Daten effizient zu verarbeiten, zu manipulieren und zu visualisieren, was entscheidend f\"ur die Qualit\"at der Analyse ist. Die Verwendung von Python in der Datenanalyse hat sich als vorteilhaft erwiesen, da es eine hohe Flexibilit\"at und Benutzerfreundlichkeit bietet.
 
@@ -441,13 +458,13 @@ Zuletzt wird wieder die gleiche Berechnung des Mutationsscores und dem Anteil de
 \end{figure}
 
 
-Im ersten Berechnungsschritt wurde der Anteil an Mutationen vom Polyprotein des Dengue-Virus berechnet. Die Ergebnisse sieht man in der Abbildung \ref{fig:Dengue_virus_combinded} oben links. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt den Anteil an Mutationen an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,78, w\"ahrend das Minimum bei 1698-1868 liegt und 0,22 betr\"agt. Die Spannweite der Werte liegt somit bei 0,56. Der Durschnittswert der Datenpunkte liegt bei 0,42. 
+Im ersten Berechnungsschritt wurde der Anteil an Mutationen vom Polyprotein des Dengue-Virus berechnet. Die Ergebnisse sieht man in der Abbildung \ref{fig:Dengue_virus_combined} oben links. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt den Anteil an Mutationen an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,78, w\"ahrend das Minimum bei 1698-1868 liegt und 0,22 betr\"agt. Die Spannweite der Werte liegt somit bei 0,56. Der Durschnittswert der Datenpunkte liegt bei 0,42. 
 
-Als n\"achstes wurden die durchschnittlichen normierten Polar-requirements Differenzen f\"ur eine Teilsequenz berechnet. Die Ergebnisse sind in der Abbildung \ref{fig:Dengue_virus_combinded} oben rechts aufgezeichnet. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt die durchschnittlichen normierten Polar-requirements Differenzen an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,19, w\"ahrend das Minimum bei 1698-1868 liegt und 0,05 betr\"agt. Die Spannweite der Werte liegt somit bei 0,14. Der Durschnittswert der Datenpunkte liegt bei 0,10. 
+Als n\"achstes wurden die durchschnittlichen normierten Polar-requirements Differenzen f\"ur eine Teilsequenz berechnet. Die Ergebnisse sind in der Abbildung \ref{fig:Dengue_virus_combined} oben rechts aufgezeichnet. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt die durchschnittlichen normierten Polar-requirements Differenzen an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,19, w\"ahrend das Minimum bei 1698-1868 liegt und 0,05 betr\"agt. Die Spannweite der Werte liegt somit bei 0,14. Der Durschnittswert der Datenpunkte liegt bei 0,10. 
 
-Auch f\"ur die Hydropathie Werte wurden die durchschnittlichen normierten Differenzen f\"ur eine Teilsequenz berechnet. Die Ergebnisse sind in der Abbildung \ref{fig:Dengue_virus_combinded} unten links aufgezeichnet. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt die durchschnittlichen normierten Hydropathie Differenzen an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,25, w\"ahrend das Minimum bei 1698-1868 liegt und 0,07 betr\"agt. Die Spannweite der Werte liegt somit bei 0,18. Der Durschnittswert der Datenpunkte liegt bei 0,12.
+Auch f\"ur die Hydropathie Werte wurden die durchschnittlichen normierten Differenzen f\"ur eine Teilsequenz berechnet. Die Ergebnisse sind in der Abbildung \ref{fig:Dengue_virus_combined} unten links aufgezeichnet. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt die durchschnittlichen normierten Hydropathie Differenzen an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,25, w\"ahrend das Minimum bei 1698-1868 liegt und 0,07 betr\"agt. Die Spannweite der Werte liegt somit bei 0,18. Der Durschnittswert der Datenpunkte liegt bei 0,12.
 
-Die Ergebnisse von der Berechnung des Mutationsscores \"uber die 20 Teilsequenzen des Dengue-Viruses sind in der Abbildung \ref{fig:Dengue_virus_combinded} unten rechts zu finden. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt den Mutationsscore an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,22, w\"ahrend das Minimum bei 1698-1868 liegt und 0,06 betr\"agt. Die Spannweite der Werte liegt somit bei 0,16. Der Durschnittswert der Datenpunkte liegt bei 0,11. 
+Die Ergebnisse von der Berechnung des Mutationsscores \"uber die 20 Teilsequenzen des Dengue-Viruses sind in der Abbildung \ref{fig:Dengue_virus_combined} unten rechts zu finden. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Die y-Achse zeigt den Mutationsscore an. Das Maximum wird an der Position 1189-1358 erreicht und betr\"agt 0,22, w\"ahrend das Minimum bei 1698-1868 liegt und 0,06 betr\"agt. Die Spannweite der Werte liegt somit bei 0,16. Der Durschnittswert der Datenpunkte liegt bei 0,11. 
 
 Die Abbildung \ref{fig:Dengue_virus_scores_and_mutations_bereiche} kombiniert den Mutationsscore und den Anteil an Mutationen in einem Diagramm. Auf der x-Achse sind die 20 Aminos\"aureabschnitte des Dengue-Virus mit Indexen aufgelistet, von 0-170 bis 3226-3396. Es gibt zwei y-Achsen. Auf der linken (roten) y-Achse wird der Mutationsscore angezeigt. Auf der rechten (blauen) y-Achse wird der Anteil an Mutationen angezeigt. Die Daten sind entsprechend gef\"arbt. Die Werte entsprechen somit der Abbildung \ref{fig:Dengue_virus_mutations} f\"ur den Anteil an Mutationen und der Abbildung \ref{fig:Dengue_virus_scores} f\"ur den Mutationsscore. Die Maxima und Minima sind somit an den gleichen Stellen. Weiterhin erkennt man, dass die beiden Linien sich \"ahneln und der Durchschnitt jeweils an einer \"ahnlichen Stelle liegt im Vergleich zum jeweiligen Wertebereich. An wenigen Stellen liegen die errechneten Werte weit auseinander, zum Beispiel bei 0-170, 679-849 und 3056-3226.
 \begin{figure}[tbp]

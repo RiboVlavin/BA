@@ -324,6 +324,7 @@ axs[0, 0].set_ylabel('Anteil an Mutationen')
 axs[0, 0].set_title('Mutationen im Dengue-Virus')
 axs[0, 0].legend()
 axs[0, 0].tick_params(axis='x', rotation=45)
+axs[0, 0].text(-0.1, 1.05, 'A', transform=axs[0, 0].transAxes, fontsize=14, fontweight='bold')
 
 # Plot 2: polar requirements über Sequenzen (naiver Ansatz)
 x = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
@@ -338,6 +339,7 @@ axs[0, 1].set_ylabel('Durchschnittliche Polar-requirements \n Differenzen (normi
 axs[0, 1].set_title('Polar requirements im Dengue-Virus')
 axs[0, 1].legend()
 axs[0, 1].tick_params(axis='x', rotation=45)
+axs[0, 1].text(-0.1, 1.05, 'B', transform=axs[0, 1].transAxes, fontsize=14, fontweight='bold')
 
 # Plot 3: hydropathie über Sequenzen (naiver Ansatz)
 x = [f"{start}-{end}" for start, end in result_automatic_sequence_sections]
@@ -352,6 +354,7 @@ axs[1, 0].set_ylabel('Durchschnittliche Hydropathie \n Differenzen (normiert)')
 axs[1, 0].set_title('Hydropathie im Dengue-Virus')
 axs[1, 0].legend()
 axs[1, 0].tick_params(axis='x', rotation=45)
+axs[1, 0].text(-0.1, 1.05, 'C', transform=axs[1, 0].transAxes, fontsize=14, fontweight='bold')
 
 # Plot 4: kombinierter Score von polar requirements und hydropathie über Sequenzen (naiver Ansatz)
 axs[1, 1].clear()
@@ -367,6 +370,7 @@ axs[1, 1].set_ylabel('Mutationsscores')
 axs[1, 1].set_title('Mutationsscores im Dengue-Virus')
 axs[1, 1].legend()
 axs[1, 1].tick_params(axis='x', rotation=45)
+axs[1, 1].text(-0.1, 1.05, 'D', transform=axs[1, 1].transAxes, fontsize=14, fontweight='bold')
 
 # Adjust layout to prevent overlap
 plt.tight_layout()
@@ -417,28 +421,39 @@ y2 = outer_scope_mutations
 # Durchschnittswerte berechnen
 mean_y1 = np.mean(y1)
 mean_y2 = np.mean(y2)
+# Maxima und Minima berechnen
+max_y1, min_y1 = np.max(y1), np.min(y1)
+max_y2, min_y2 = np.max(y2), np.min(y2)
+# Indizes der Maxima und Minima finden
+max_index_y1 = np.argmax(y1)
+min_index_y1 = np.argmin(y1)
+max_index_y2 = np.argmax(y2)
+min_index_y2 = np.argmin(y2)
 # Diagramm erstellen
 fig, ax1 = plt.subplots()
 # Erste y-Achse plotten
 color = 'tab:red'
 ax1.set_xlabel('Abschnitte als Indizes')
 ax1.set_ylabel('Mutationsscore', color=color)
-ax1.plot(x, y1, color=color)
+ax1.plot(x, y1, color=color, zorder=1)
 ax1.tick_params(axis='y', labelcolor=color)
 # Durchschnittslinie für die erste y-Achse
-ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationsscore')
+ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschn. Mutationsscore', zorder=1)
+# Maxima und Minima für die erste y-Achse hinzufügen
+ax1.scatter(x[max_index_y1], max_y1, color='red', zorder=1)  # Punkt für Maximum
+ax1.scatter(x[min_index_y1], min_y1, color='red', zorder=1)  # Punkt für Minimum
 # Zweite y-Achse erstellen
 ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
 # Zweite y-Achse plotten
 color = 'tab:blue'
 ax2.set_ylabel('Anteil an Mutationen', color=color)
-ax2.plot(x, y2, color=color)
+ax2.plot(x, y2, color=color, zorder=1)
 ax2.tick_params(axis='y', labelcolor=color)
 # Durchschnittslinie für die zweite y-Achse
-ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationen')
-# Legende hinzufügen
-ax1.legend(loc='upper left')
-ax2.legend(loc='upper right')
+ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschn. Mutationen', zorder=1)
+# Maxima und Minima für die zweite y-Achse hinzufügen
+ax2.scatter(x[max_index_y2], max_y2, color='blue', zorder=1)  # Punkt für Maximum
+ax2.scatter(x[min_index_y2], min_y2, color='blue', zorder=1)  # Punkt für Minimum
 # x-Achsenbeschriftungen drehen
 ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
 ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
@@ -446,6 +461,9 @@ ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen de
 plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
 # Titel und Gitternetz hinzufügen
 fig.suptitle('Mutationsscores und Mutationen im Dengue-Virus')
+# Legende hinzufügen (über das gesamte Diagramm)
+fig.legend(loc='upper center', bbox_to_anchor=(0.515, 0.9), ncol=2)
+plt.tight_layout()
 plt.show()
 
 
@@ -483,6 +501,14 @@ y2 = outer_scope_mutations
 # Durchschnittswerte berechnen
 mean_y1 = np.mean(y1)
 mean_y2 = np.mean(y2)
+# Maxima und Minima berechnen
+max_y1, min_y1 = np.max(y1), np.min(y1)
+max_y2, min_y2 = np.max(y2), np.min(y2)
+# Indizes der Maxima und Minima finden
+max_index_y1 = np.argmax(y1)
+min_index_y1 = np.argmin(y1)
+max_index_y2 = np.argmax(y2)
+min_index_y2 = np.argmin(y2)
 # Diagramm erstellen
 fig, ax1 = plt.subplots()
 # Erste y-Achse plotten
@@ -492,7 +518,10 @@ ax1.set_ylabel('Mutationsscore', color=color)
 ax1.plot(x, y1, color=color)
 ax1.tick_params(axis='y', labelcolor=color)
 # Durchschnittslinie für die erste y-Achse
-ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationsscore')
+ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschn. Mutationsscore')
+# Maxima und Minima für die erste y-Achse hinzufügen
+ax1.scatter(x[max_index_y1], max_y1, color='red', zorder=5)  # Punkt für Maximum
+ax1.scatter(x[min_index_y1], min_y1, color='red', zorder=5)  # Punkt für Minimum
 # Zweite y-Achse erstellen
 ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
 # Zweite y-Achse plotten
@@ -501,10 +530,10 @@ ax2.set_ylabel('Anteil an Mutationen', color=color)
 ax2.plot(x, y2, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
 # Durchschnittslinie für die zweite y-Achse
-ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationen')
-# Legende hinzufügen
-ax1.legend(loc='upper left')
-ax2.legend(loc='upper right')
+ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschn. Mutationen')
+# Maxima und Minima für die zweite y-Achse hinzufügen
+ax2.scatter(x[max_index_y2], max_y2, color='blue', zorder=5)  # Punkt für Maximum
+ax2.scatter(x[min_index_y2], min_y2, color='blue', zorder=5)  # Punkt für Minimum
 # x-Achsenbeschriftungen drehen
 ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
 ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
@@ -512,6 +541,9 @@ ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen de
 plt.subplots_adjust(bottom=0.2)  # Mehr Platz unten hinzufügen
 # Titel und Gitternetz hinzufügen
 fig.suptitle('Mutationsscores und Mutationen mit zufälliger Permutation')
+# Legende hinzufügen (über das gesamte Diagramm)
+fig.legend(loc='upper center', bbox_to_anchor=(0.5, 0.9), ncol=2)
+plt.tight_layout()
 plt.show()
 print(f"Mean mutationscore: {mean_y1}")
 print(f"Mean mutations: {mean_y2}")
@@ -542,6 +574,14 @@ y2 = outer_scope_mutations_per_file
 # Durchschnittswerte berechnen
 mean_y1 = np.mean(y1)
 mean_y2 = np.mean(y2)
+# Maxima und Minima berechnen
+max_y1, min_y1 = np.max(y1), np.min(y1)
+max_y2, min_y2 = np.max(y2), np.min(y2)
+# Indizes der Maxima und Minima finden
+max_index_y1 = np.argmax(y1)
+min_index_y1 = np.argmin(y1)
+max_index_y2 = np.argmax(y2)
+min_index_y2 = np.argmin(y2)
 # Diagramm erstellen
 fig, ax1 = plt.subplots()
 # Erste y-Achse plotten
@@ -551,7 +591,10 @@ ax1.set_ylabel('Mutationsscore', color=color)
 ax1.plot(x, y1, color=color)
 ax1.tick_params(axis='y', labelcolor=color)
 # Durchschnittslinie für die erste y-Achse
-ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationsscore')
+ax1.axhline(mean_y1, color=color, linestyle='--', linewidth=1, label='Durchschn. Mutationsscore')
+# Maxima und Minima für die erste y-Achse hinzufügen
+ax1.scatter(x[max_index_y1], max_y1, color='red', zorder=5)  # Punkt für Maximum
+ax1.scatter(x[min_index_y1], min_y1, color='red', zorder=5)  # Punkt für Minimum
 # Zweite y-Achse erstellen
 ax2 = ax1.twinx()  # Zweite y-Achse teilt sich die x-Achse mit der ersten
 # Zweite y-Achse plotten
@@ -560,10 +603,10 @@ ax2.set_ylabel('Anteil an Mutationen', color=color)
 ax2.plot(x, y2, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
 # Durchschnittslinie für die zweite y-Achse
-ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschnitt Mutationen')
-# Legende hinzufügen
-ax1.legend(loc='upper left')
-ax2.legend(loc='upper right')
+ax2.axhline(mean_y2, color=color, linestyle='--', linewidth=1, label='Durchschn. Mutationen')
+# Maxima und Minima für die zweite y-Achse hinzufügen
+ax2.scatter(x[max_index_y2], max_y2, color='blue', zorder=5)  # Punkt für Maximum
+ax2.scatter(x[min_index_y2], min_y2, color='blue', zorder=5)  # Punkt für Minimum
 # x-Achsenbeschriftungen drehen
 ax1.set_xticks(ax1.get_xticks())  # Setzen der x-Achsen-Ticks explizit
 ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen der x-Achsenbeschriftungen
@@ -571,6 +614,9 @@ ax1.set_xticklabels(ax1.get_xticklabels(), rotation=45, ha='right')  # Drehen de
 plt.subplots_adjust(bottom=0.48)  # Mehr Platz unten hinzufügen
 # Titel und Gitternetz hinzufügen
 fig.suptitle('Mutationsscores und Mutationen im Dengue-Virus')
+# Legende hinzufügen (über das gesamte Diagramm)
+fig.legend(loc='upper center', bbox_to_anchor=(0.52, 0.9), ncol=2)
+plt.tight_layout()
 plt.show()
 print(f"Mean mutationscore: {mean_y1}")
 print(f"Mean mutations: {mean_y2}")

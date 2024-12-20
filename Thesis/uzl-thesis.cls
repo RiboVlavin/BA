@@ -357,6 +357,7 @@
   \def\@oddfoot{\reset@font%
     \UzLStyle{foot}%
     \UzLStyle{page number}%
+    \color{black}
     \hfil\UzLStyle{page number pre}%
     \thepage%
     \UzLStyle{page number post}\hfil}
